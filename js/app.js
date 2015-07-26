@@ -6,64 +6,72 @@
  /** Code fo the ViewModel */
 function AppViewModel() {
 
-//Center of map location is Circular Quay
-var centerLat = ko.observable(-33.8618579);
-var centerLang = ko.observable(151.2105461);
+  //Center of map location is Circular Quay
+  var centerLat = ko.observable(-33.8618579);
+  var centerLang = ko.observable(151.2105461);
 
-var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
+  var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
 
-/** creating an array of location pins */
-var pins = ko.observableArray([
-  {
-    lat: -40.8674869,
-    lang: 161.2069902,
-    type: 'Food',
-    pinLatLang: null
-  },
-  {
-    lat: -33.8674869,
-    lang: 151.2069902,
-    type: 'Accomodation',
-    pinLatLang: null
+  /** creating an array of location pins */
+  var pins = ko.observableArray([
+    {
+      //55 Harrington street
+      lat: -33.859257,
+      lang: 151.207849,
+      type: 'Food',
+      markerPoint: null
+    },
+    {
+      // the rocks
+      lat: -33.8674869,
+      lang: 151.2069902,
+      type: 'Accomodation',
+      markerPoint: null
+    },
+    {
+      //88 Cumberland Street
+      lat: -33.8582199,
+      lang: 151.2074979,
+      type: 'Accomodation',
+      markerPoint: null
+    }
+  ]);
+
+  //create pins LatLng, using that to create and add Marker to the pins array
+  var mappedPins = ko.observableArray();
+  var pinPoint, pinMarker;
+  for ( var i = 0; i < pins().length; i++){
+
+    pinPoint = new google.maps.LatLng(pins()[i].lat,pins()[i].lang);
+    pinMarker = new google.maps.Marker({
+      position: pinPoint
+      //animation:google.maps.Animation.BOUNCE  to make the marker bounce
+      //title: "hello world!"
+    });
+
+    pins()[i].markerPoint = pinMarker;
   }
-]);
 
-//create mapped pins and add it to the pins array
-var mappedPins = ko.observableArray();
-var pinPoint;
-for ( var i = 0; i < pins().length; i++){
+  var map;
 
-  pinPoint = new google.maps.LatLng(pins()[i].lat,pins()[i].lang);
+  function initialize() {
 
+    //Setting the map
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
 
-  pins()[i].pinLatLang = pinPoint;
-}
+      center: mapCenter,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
 
-var map;
+    });
 
-function initialize() {
+    //adding Markers to the map
+    for ( var i = 0; i < pins().length; i++){
+      pins()[i].markerPoint.setMap(map);
+    }
+  }
 
-  //Setting the map
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
-
-    center: mapCenter,
-    zoom: 15,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-
-  });
-
-  //Setting the markers
-  var marker = new google.maps.Marker({
-    position: pins()[1].pinLatLang,
-    //animation:google.maps.Animation.BOUNCE  to make the marker bounce
-    title: "hello world!"
-  });
-
-  marker.setMap(map);
-
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', initialize);
 
 }
 
