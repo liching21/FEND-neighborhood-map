@@ -19,6 +19,7 @@ function AppViewModel() {
       lat: -33.859257,
       lang: 151.207849,
       type: 'Food',
+      icon: "img/green_MarkerA.png",
       markerPoint: null
     },
     {
@@ -26,6 +27,7 @@ function AppViewModel() {
       lat: -33.8674869,
       lang: 151.2069902,
       type: 'Accomodation',
+      icon: "img/blue_MarkerA.png",
       markerPoint: null
     },
     {
@@ -33,6 +35,7 @@ function AppViewModel() {
       lat: -33.8582199,
       lang: 151.2074979,
       type: 'Accomodation',
+      icon: "img/orange_MarkerA.png",
       markerPoint: null
     }
   ]);
@@ -44,7 +47,8 @@ function AppViewModel() {
 
     pinPoint = new google.maps.LatLng(pins()[i].lat,pins()[i].lang);
     pinMarker = new google.maps.Marker({
-      position: pinPoint
+      position: pinPoint,
+      icon: pins()[i].icon
       //animation:google.maps.Animation.BOUNCE  to make the marker bounce
       //title: "hello world!"
     });
