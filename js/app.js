@@ -48,7 +48,7 @@ function AppViewModel() {
     pinPoint = new google.maps.LatLng(pins()[i].lat,pins()[i].lang);
     pinMarker = new google.maps.Marker({
       position: pinPoint,
-      icon: pins()[i].icon
+      icon: pins()[i].icon,
       //animation:google.maps.Animation.BOUNCE  to make the marker bounce
       //title: "hello world!"
     });
@@ -65,7 +65,11 @@ function AppViewModel() {
 
       center: mapCenter,
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      panControl: false,
+      mapTypeControlOptions: {
+        position:google.maps.ControlPosition.BOTTOM_CENTER
+      }
 
     });
 
