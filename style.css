@@ -1,0 +1,10 @@
+/**
+ *	Author: Liching Yew;
+ *  Description: This is the css to use within FEND-neighborhood-map Project;
+ */
+
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
