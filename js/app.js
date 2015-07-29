@@ -15,18 +15,28 @@ function AppViewModel() {
   /** creating an array of location pins */
   var pins = ko.observableArray([
     {
-      //55 Harrington street
-      lat: -33.859257,
-      lang: 151.207849,
-      type: 'Food',
+      //BAR 100
+      lat: -33.858218,
+      lang: 151.209388,
+      type: 'food',
       icon: "img/green_MarkerA.png",
+      phoneNum: "+61280709311",
       markerPoint: null
     },
+    {
+      //Pancakes on the Rocks
+      lat: -33.8571762,
+      lang: 151.2088311,
+      type: 'Food',
+      icon: "img/green_MarkerB.png",
+      phoneNum: "+61292476371",
+      markerPoint: null
+    }/**,
     {
       // the rocks
       lat: -33.8674869,
       lang: 151.2069902,
-      type: 'Accomodation',
+      type: 'accomodation',
       icon: "img/blue_MarkerA.png",
       markerPoint: null
     },
@@ -34,10 +44,10 @@ function AppViewModel() {
       //88 Cumberland Street
       lat: -33.8582199,
       lang: 151.2074979,
-      type: 'Accomodation',
+      type: 'Activity',
       icon: "img/orange_MarkerA.png",
       markerPoint: null
-    }
+    }*/
   ]);
 
   //create pins LatLng, using that to create and add Marker to the pins array
@@ -76,10 +86,31 @@ function AppViewModel() {
     //adding Markers to the map
     for ( var i = 0; i < pins().length; i++){
       pins()[i].markerPoint.setMap(map);
+      showBizInfo(pins()[i].markerPoint, i);
     }
   }
 
+  function showBizInfo(marker, num) {
+
+    var message = "#yolo";
+    var infowindow = new google.maps.InfoWindow({
+      content: message
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(marker.get('map'), marker);
+      loadYelp(pins()[num].phoneNum);
+    });
+  }
+
   google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+  //google.maps.event.addListener(pins()[1].markerPoint, 'click', function() {
+  //  loadYelp(pins()[1].phoneNum);
+  //});
 
 }
 
