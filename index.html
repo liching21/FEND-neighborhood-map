@@ -19,15 +19,15 @@
   	<div id="activity">Activity</div>
   </div>
   <div id="box">
-  	<span class="title" data-bind="text: businessName">Restaurant Name Very Very Long</span>
-  	<img data-bind="attr:{src: businessRating}" src="http://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png">
+  	<span class="title" data-bind="text: businessName"></span>
+  	<img data-bind="attr:{src: businessRating}">
   	<div class="line"></div>
 
-  	<img id="biz-pic" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div id="biz-info">
-  		<span>Type: Food</span>
-  		<span>Phone: 02 8888 8888</span>
-  		<span>Address: 47 Argyle St, The Rocks, NSW, Australia</span>
-  		<span>Is Open: Yes</span>
+  	<img id="biz-pic" data-bind="attr:{src: businessPic}" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div id="biz-info">
+  		<span data-bind="text: businessType">Type: Food</span>
+  		<span data-bind="text: businessPhone">Phone: 02 8888 8888</span>
+  		<span data-bind="text: businessAddress">Address: 47 Argyle St, The Rocks, NSW, Australia</span>
+  		<span data-bind="text: businessIsOpen">Is Open: Yes</span>
   	</div>
 
 

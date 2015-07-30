@@ -14,6 +14,11 @@ function AppViewModel() {
 
   this.businessName = ko.observable("Business Name");
   this.businessRating = ko.observable();
+  this.businessPic = ko.observable();
+  this.businessType = ko.observable();
+  this.businessPhone = ko.observable();
+  this.businessAddress = ko.observable();// a function to join the address
+  this.businessIsOpen = ko.observable();
 
   /** creating an array of location pins */
   var pins = ko.observableArray([
