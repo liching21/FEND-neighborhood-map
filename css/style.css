@@ -36,17 +36,56 @@ html, body, #map-canvas {
 	width: 10%;
 	text-align: center;
 	padding-bottom: 10px;
-	border-bottom: 3px solid transparent;
+	border-bottom: 5px solid transparent;
 }
 
 #food:hover{
-	border-bottom: 3px solid #A1E789;  /* green */
+	border-bottom: 5px solid #A1E789;  /* green */
 }
 
 #accom:hover{
-	border-bottom: 3px solid #678FEB; /* blue */
+	border-bottom: 5px solid #678FEB; /* blue */
 }
 
 #activity:hover{
-	border-bottom: 3px solid #F29324; /* orange */
+	border-bottom: 5px solid #F29324; /* orange */
+}
+
+#box{
+	width: 300px;
+	top: 45px;
+	position: fixed;
+	z-index: 1;
+	right: 0px;
+	background-color: #fff;
+}
+
+span{
+	display: inline-block;
+}
+
+.title{
+	padding: 4px 6px;
+}
+
+.line{
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+	height: 1px;
+}
+
+#biz-pic{
+	display: inline-block;
+	padding-right:  6px;
+}
+
+#biz-info{
+  	width: 194px;
+  	display: inline-block;
+  	font-size: 13px;
+  	height: 100px;
+}
+
+#biz-info span{
+	padding: 2px;
 }

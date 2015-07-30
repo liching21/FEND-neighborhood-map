@@ -15,11 +15,13 @@ function loadYelp(phoneNum){
          // do stuff with json (in this case an array)
       console.log(json);
       var thisBusiness = json.businesses[0];
-        business = thisBusiness.name;
 
-        //json.businesses[0];
-        console.log("the business is " + business);
-        //$nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + article.headline.main + '</a>' + '<p>' + article.snippet + '</p>' + '</li>');
+      	//console.log(thisBusiness.rating_img_url);
+				window.vm.businessName(thisBusiness.name);
+				window.vm.businessRating(thisBusiness.rating_img_url);
+
+        console.log("app view model biz name is " + window.vm.businessName());
+
      },
      error:function(){
          alert("Error");

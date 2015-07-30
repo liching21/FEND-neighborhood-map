@@ -12,13 +12,16 @@ function AppViewModel() {
 
   var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
 
+  this.businessName = ko.observable("Business Name");
+  this.businessRating = ko.observable();
+
   /** creating an array of location pins */
   var pins = ko.observableArray([
     {
       //BAR 100
       lat: -33.858218,
       lang: 151.209388,
-      type: 'food',
+      type: 'Food',
       icon: "img/green_MarkerA.png",
       phoneNum: "+61280709311",
       markerPoint: null
@@ -30,6 +33,33 @@ function AppViewModel() {
       type: 'Food',
       icon: "img/green_MarkerB.png",
       phoneNum: "+61292476371",
+      markerPoint: null
+    },
+    {
+      //Caminetto Restaurant
+      lat: -33.8588066,
+      lang: 151.2082002,
+      type: 'Food',
+      icon: "img/green_MarkerC.png",
+      phoneNum: "+610292475787",
+      markerPoint: null
+    },
+    {
+      //La Renaissance Cafe
+      lat: -33.859403,
+      lang: 151.20842,
+      type: 'Food',
+      icon: "img/green_MarkerD.png",
+      phoneNum: "+610292414878",
+      markerPoint: null
+    },
+    {
+      //Barcycle Cafe and Store
+      lat: -33.8539691,
+      lang: 151.2083385,
+      type: 'Food',
+      icon: "img/green_MarkerE.png",
+      phoneNum: "+610292470772",
       markerPoint: null
     }/**,
     {
@@ -92,7 +122,7 @@ function AppViewModel() {
 
   function showBizInfo(marker, num) {
 
-    var message = "#yolo";
+    var message = pins()[num].type;
     var infowindow = new google.maps.InfoWindow({
       content: message
     });
@@ -107,15 +137,12 @@ function AppViewModel() {
 
 
 
-
-  //google.maps.event.addListener(pins()[1].markerPoint, 'click', function() {
-  //  loadYelp(pins()[1].phoneNum);
-  //});
-
 }
 
-
 // Activates knockout.js
-ko.applyBindings(new AppViewModel());
+window.vm = new AppViewModel();
+ko.applyBindings(vm);
+
+//ko.applyBindings(new AppViewModel());
 
 
