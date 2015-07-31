@@ -66,7 +66,8 @@ function AppViewModel() {
       icon: "img/green_MarkerE.png",
       phoneNum: "+610292470772",
       markerPoint: null
-    }/**,
+    },
+    /**,
     {
       // the rocks
       lat: -33.8674869,
@@ -83,6 +84,55 @@ function AppViewModel() {
       icon: "img/orange_MarkerA.png",
       markerPoint: null
     }*/
+    {
+      //BridgeClimb Sydney
+      lat: -33.8574281,
+      lang: 151.2077354,
+      type: 'Activity',
+      icon: "img/orange_MarkerA.png",
+      phoneNum: "+610282747777",
+      markerPoint: null
+    },
+    {
+      //Sydney Observatory
+      lat: -33.8587909,
+      lang: 151.2051614,
+      type: 'Activity',
+      icon: "img/orange_MarkerB.png",
+      phoneNum: "+610292170341",
+      markerPoint: null
+    },
+    {
+      //Bonza Bike Tours
+      lat: -33.859414,
+      lang: 151.208107,
+      type: 'Activity',
+      icon: "img/orange_MarkerC.png",
+      phoneNum: "+610292478800",
+      markerPoint: null
+    },
+    {
+      //Museum Of Contemporary Art
+      lat: -33.860046,
+      lang: 151.20897,
+      type: 'Activity',
+      icon: "img/orange_MarkerD.png",
+      phoneNum: "+610292452400",
+      markerPoint: null
+    },
+    {
+      //PaniQ Room
+      lat: -33.859413,
+      lang: 151.207348,
+      type: 'Activity',
+      icon: "img/orange_MarkerE.png",
+      phoneNum: "+610414468430",
+      markerPoint: null
+    }
+
+    //TODO: Add hotels and activities
+    //ADD: List Functionality
+    //ADD: Search functionality
   ]);
 
   //create pins LatLng, using that to create and add Marker to the pins array
