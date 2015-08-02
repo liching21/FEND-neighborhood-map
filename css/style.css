@@ -18,16 +18,17 @@ html, body, #map-canvas {
 #filter{
 	z-index: 1;
 	top: 0px;
-	position: fixed;
+	position: absolute;
     width:100%;
     background: white;
     box-sizing: border-box;
-  	padding: 10px 0px 0px 10px;
+  	padding: 0px 0px 0px 10px;
 }
 
 #search-bar{
 	display: inline-block;
 	width: 40%;
+	padding-top: 10px;
 }
 
 #food, #accom, #activity{
@@ -35,21 +36,28 @@ html, body, #map-canvas {
 	display: inline-block;
 	width: 10%;
 	text-align: center;
+	padding-top: 10px;
 	padding-bottom: 10px;
 	border-bottom: 5px solid transparent;
 	cursor: pointer;
 }
 
 #food:hover{
-	border-bottom: 5px solid #A1E789;  /* green */
+	/*order-bottom: 5px solid #A1E789;  /* green */
+	background-color: #A1E789;
+	color: #fff;
 }
 
 #accom:hover{
-	border-bottom: 5px solid #678FEB; /* blue */
+	/*border-bottom: 5px solid #678FEB;*/ /* blue */
+	background-color: #678FEB;
+	color: #fff;
 }
 
 #activity:hover{
-	border-bottom: 5px solid #F29324; /* orange */
+	/*border-bottom: 5px solid #F29324; /* orange */
+	background-color: #F29324;
+	color: #fff;
 }
 
 .marker-list{
@@ -57,7 +65,7 @@ html, body, #map-canvas {
 	background-color: #fff;
 	z-index: 1;
 	top: 47px;
-	right: 0px;
+	left: 0px;
 }
 
 .marker-list ul{
