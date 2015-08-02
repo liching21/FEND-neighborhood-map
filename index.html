@@ -14,20 +14,28 @@
   <div id="map-canvas"></div>
   <div id="filter">
   	<div id="search-bar">Search</div>
-  	<div id="food">Food
-  		<div class="drop-down-menu">
-  			<ul>
-  				<li>name 1999999 99999 9999999999999</li>
-  				<li>name 2</li>
-  				<li>name 3</li>
-  				<li>name 4</li>
-  				<li>name 5</li>
-  			</ul>
-  		</div>
-  	</div>
+  	<div id="food">Food</div>
   	<div id="accom">Accomodation</div>
   	<div id="activity">Activity</div>
   </div>
+
+  <!-- TODO: add a list of markers -->
+  <div class="marker-list" >
+		<ul data-bind="foreach: pins">
+			<li data-bind="text: name">name 1999999 99999 9999999999999</li>
+		</ul>
+	</div>
+<!--
+	<ul data-bind="foreach: people">
+    <li>
+        Name at position <span data-bind="text: $index"> </span>:
+        <span data-bind="text: name"> </span>
+        <a href="#" data-bind="click: $parent.removePerson">Remove</a>
+    </li>
+</ul>-->
+
+
+
   <div id="box" data-bind="visible: businessShow">
   	<span class="title" data-bind="text: businessName"></span>
   	<img data-bind="attr:{src: businessRating}">

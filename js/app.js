@@ -6,24 +6,27 @@
  /** Code fo the ViewModel */
 function AppViewModel() {
 
+  var self = this;
+
   //Center of map location is Circular Quay
   var centerLat = ko.observable(-33.8578066);
   var centerLang = ko.observable(151.2082002);
 
   var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
 
-  this.businessName = ko.observable("Business Name");
-  this.businessRating = ko.observable();
-  this.businessPic = ko.observable();
-  this.businessPhone = ko.observable();
-  this.businessAddress = ko.observable();// a function to join the address
-  this.businessIsOpen = ko.observable();
-  this.businessShow = ko.observable(false);
+  self.businessName = ko.observable("Business Name");
+  self.businessRating = ko.observable();
+  self.businessPic = ko.observable();
+  self.businessPhone = ko.observable();
+  self.businessAddress = ko.observable();// a function to join the address
+  self.businessIsOpen = ko.observable();
+  self.businessShow = ko.observable(false);
 
   /** creating an array of location pins */
-  var pins = ko.observableArray([
+  self.pins = ko.observableArray([
     {
       //BAR 100
+      name: "BAR 100",
       lat: -33.858218,
       lang: 151.209388,
       type: 'Food',
@@ -33,6 +36,7 @@ function AppViewModel() {
     },
     {
       //Pancakes on the Rocks
+      name: "Pancakes on the Rocks",
       lat: -33.8571762,
       lang: 151.2088311,
       type: 'Food',
@@ -42,6 +46,7 @@ function AppViewModel() {
     },
     {
       //Caminetto Restaurant
+      name: "Caminetto Restaurant",
       lat: -33.8588066,
       lang: 151.2082002,
       type: 'Food',
@@ -51,6 +56,7 @@ function AppViewModel() {
     },
     {
       //La Renaissance Cafe
+      name: "La Renaissance Cafe",
       lat: -33.859403,
       lang: 151.20842,
       type: 'Food',
@@ -60,6 +66,7 @@ function AppViewModel() {
     },
     {
       //Barcycle Cafe and Store
+      name: "Barcycle Cafe and Store",
       lat: -33.8539691,
       lang: 151.2083385,
       type: 'Food',
@@ -69,6 +76,7 @@ function AppViewModel() {
     },
     {
       //Shangri-La Hotel, Sydney
+      name: "Shangri-La Hotel, Sydney",
       lat: -33.86141,
       lang: 151.206457,
       type: 'Accomodation',
@@ -78,6 +86,7 @@ function AppViewModel() {
     },
     {
       //Park Hyatt Sydney
+      name: "Park Hyatt Sydney",
       lat: -33.8556346,
       lang: 151.2098274,
       type: 'Accomodation',
@@ -87,6 +96,7 @@ function AppViewModel() {
     },
     {
       //The Australian Heritage Hotel
+      name: "The Australian Heritage Hotel",
       lat: -33.8595267,
       lang: 151.2070303,
       type: 'Accomodation',
@@ -96,6 +106,7 @@ function AppViewModel() {
     },
     {
       //Rendezvous Hotel Sydney The Rocks
+      name: "Rendezvous Hotel Sydney The Rocks",
       lat: -33.8600823,
       lang: 151.2078215,
       type: 'Accomodation',
@@ -105,6 +116,7 @@ function AppViewModel() {
     },
     {
       //Four Seasons Hotel
+      name: "Four Seasons Hotel",
       lat: -33.861667,
       lang: 151.207666,
       type: 'Accomodation',
@@ -114,6 +126,7 @@ function AppViewModel() {
     },
     {
       //BridgeClimb Sydney
+      name: "BridgeClimb Sydney",
       lat: -33.8574281,
       lang: 151.2077354,
       type: 'Activity',
@@ -123,6 +136,7 @@ function AppViewModel() {
     },
     {
       //Sydney Observatory
+      name: "Sydney Observatory",
       lat: -33.8587909,
       lang: 151.2051614,
       type: 'Activity',
@@ -132,6 +146,7 @@ function AppViewModel() {
     },
     {
       //Bonza Bike Tours
+      name: "Bonza Bike Tours",
       lat: -33.859414,
       lang: 151.208107,
       type: 'Activity',
@@ -141,6 +156,7 @@ function AppViewModel() {
     },
     {
       //Museum Of Contemporary Art
+      name: "Museum Of Contemporary Art",
       lat: -33.860046,
       lang: 151.20897,
       type: 'Activity',
@@ -150,6 +166,7 @@ function AppViewModel() {
     },
     {
       //PaniQ Room
+      name: "PaniQ Room",
       lat: -33.859413,
       lang: 151.207348,
       type: 'Activity',
@@ -165,17 +182,17 @@ function AppViewModel() {
   //create pins LatLng, using that to create and add Marker to the pins array
   var mappedPins = ko.observableArray();
   var pinPoint, pinMarker;
-  for ( var i = 0; i < pins().length; i++){
+  for ( var i = 0; i < self.pins().length; i++){
 
-    pinPoint = new google.maps.LatLng(pins()[i].lat,pins()[i].lang);
+    pinPoint = new google.maps.LatLng(self.pins()[i].lat,self.pins()[i].lang);
     pinMarker = new google.maps.Marker({
       position: pinPoint,
-      icon: pins()[i].icon,
+      icon: self.pins()[i].icon,
       //animation:google.maps.Animation.BOUNCE  to make the marker bounce
       //title: "hello world!"
     });
 
-    pins()[i].markerPoint = pinMarker;
+    self.pins()[i].markerPoint = pinMarker;
   }
 
   var map;
@@ -194,12 +211,18 @@ function AppViewModel() {
       }
 
     });
+    console.log("where are my pins?");
 
     //adding Markers to the map
-    for ( var i = 0; i < pins().length; i++){
-      pins()[i].markerPoint.setMap(map);
-      showBizInfo(pins()[i].markerPoint, i);
+    for ( var i = 0; i < self.pins().length; i++){
+      self.pins()[i].markerPoint.setMap(map);
+      showBizInfo(self.pins()[i].markerPoint, i);
+
     }
+  }
+
+  function displayBizList(){
+
   }
 
   function showBizInfo(marker, num) {
@@ -213,14 +236,14 @@ function AppViewModel() {
     google.maps.event.addListener(marker, 'click', function() {
 
       //adding Markers to the map
-      for ( var i = 0; i < pins().length; i++){
-        var thisMarker = pins()[i].markerPoint;
+      for ( var i = 0; i < self.pins().length; i++){
+        var thisMarker = self.pins()[i].markerPoint;
         thisMarker.setAnimation(null);
       }
 
       marker.setAnimation(google.maps.Animation.BOUNCE);
       //infowindow.open(marker.get('map'), marker);
-      loadYelp(pins()[num].phoneNum, num);
+      loadYelp(self.pins()[num].phoneNum, num);
     });
   }
 
@@ -233,9 +256,10 @@ window.vm = new AppViewModel();
 ko.applyBindings(vm);
 
 //when menu item is clicked, display drop-down menu
+/**
 $("#food").click(function(){
   $(".drop-down-menu").slideToggle("slow");
   $("#food").toggleClass(".selected");
-});
+});**/
 
 
