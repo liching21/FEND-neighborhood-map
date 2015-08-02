@@ -211,7 +211,6 @@ function AppViewModel() {
       }
 
     });
-    console.log("where are my pins?");
 
     //adding Markers to the map
     for ( var i = 0; i < self.pins().length; i++){
@@ -219,10 +218,6 @@ function AppViewModel() {
       showBizInfo(self.pins()[i].markerPoint, i);
 
     }
-  }
-
-  function displayBizList(){
-
   }
 
   function showBizInfo(marker, num) {
@@ -235,15 +230,32 @@ function AppViewModel() {
 
     google.maps.event.addListener(marker, 'click', function() {
 
-      //adding Markers to the map
+      clearYelp();
+
+      // if marker is bouncing - stop bouncing
+      if (marker.getAnimation() != null) {
+        marker.setAnimation(null);
+      }
+      // else - stop all markers from bouncing, and marker that is clicked on will bounce
+      else {
+        for ( var i = 0; i < self.pins().length; i++){
+          var thisMarker = self.pins()[i].markerPoint;
+          thisMarker.setAnimation(null);
+        }
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        loadYelp(self.pins()[num].phoneNum, num);
+      }
+
+      //stop the animation of all markers
+      /*
       for ( var i = 0; i < self.pins().length; i++){
         var thisMarker = self.pins()[i].markerPoint;
         thisMarker.setAnimation(null);
-      }
+      }*/
 
-      marker.setAnimation(google.maps.Animation.BOUNCE);
+      //marker.setAnimation(google.maps.Animation.BOUNCE);
       //infowindow.open(marker.get('map'), marker);
-      loadYelp(self.pins()[num].phoneNum, num);
+      //loadYelp(self.pins()[num].phoneNum, num);
     });
   }
 

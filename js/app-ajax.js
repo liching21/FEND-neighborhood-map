@@ -32,3 +32,7 @@ function loadYelp(phoneNum, num){
      }
  })
 }
+
+function clearYelp(){
+	window.vm.businessShow(false);
+}
