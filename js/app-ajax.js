@@ -12,20 +12,20 @@ function loadYelp(phoneNum, num){
      url:url,
      dataType: 'jsonp',
      success:function(json){
-         // do stuff with json (in this case an array)
+
+      //Update the ko observable based on the information received
       console.log(json);
       var thisBusiness = json.businesses[0];
 
-				window.vm.businessName(thisBusiness.name);
-				window.vm.businessRating(thisBusiness.rating_img_url);
+    	window.vm.businessShow(true);
+			window.vm.businessName(thisBusiness.name);
+			window.vm.businessRating(thisBusiness.rating_img_url);
+			window.vm.businessPic(thisBusiness.photo_url);
+			window.vm.businessPhone("Phone: " + thisBusiness.phone);
+			window.vm.businessAddress("Address: " + thisBusiness.address1);
+			window.vm.businessIsOpen("Is Open: " + thisBusiness.is_closed); //TODO: check if it is the opposite
 
-				window.vm.businessPic(thisBusiness.photo_url);
-				window.vm.businessPhone("Phone: " + thisBusiness.phone);
-				window.vm.businessAddress("Address: " + thisBusiness.address1);
-				window.vm.businessIsOpen("Is Open: " + thisBusiness.is_closed); //TODO: check if it is the opposite
-
-        console.log("app view model biz name is " + window.vm.businessName());
-
+       console.log("app view model biz name is " + window.vm.businessName());
      },
      error:function(){
          alert("Error");

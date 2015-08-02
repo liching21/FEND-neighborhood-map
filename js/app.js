@@ -7,8 +7,8 @@
 function AppViewModel() {
 
   //Center of map location is Circular Quay
-  var centerLat = ko.observable(-33.8618579);
-  var centerLang = ko.observable(151.2105461);
+  var centerLat = ko.observable(-33.8578066);
+  var centerLang = ko.observable(151.2082002);
 
   var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
 
@@ -18,6 +18,7 @@ function AppViewModel() {
   this.businessPhone = ko.observable();
   this.businessAddress = ko.observable();// a function to join the address
   this.businessIsOpen = ko.observable();
+  this.businessShow = ko.observable(false);
 
   /** creating an array of location pins */
   var pins = ko.observableArray([
@@ -185,7 +186,7 @@ function AppViewModel() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
 
       center: mapCenter,
-      zoom: 15,
+      zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       panControl: false,
       mapTypeControlOptions: {
@@ -203,20 +204,27 @@ function AppViewModel() {
 
   function showBizInfo(marker, num) {
 
-    var message = pins()[num].type;
+    //remove the map info window
+    /*var message = pins()[num].type;
     var infowindow = new google.maps.InfoWindow({
       content: message
-    });
+    });*/
 
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(marker.get('map'), marker);
+
+      //adding Markers to the map
+      for ( var i = 0; i < pins().length; i++){
+        var thisMarker = pins()[i].markerPoint;
+        thisMarker.setAnimation(null);
+      }
+
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+      //infowindow.open(marker.get('map'), marker);
       loadYelp(pins()[num].phoneNum, num);
     });
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
-
-
 
 }
 
@@ -224,6 +232,10 @@ function AppViewModel() {
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
 
-//ko.applyBindings(new AppViewModel());
+//when menu item is clicked, display drop-down menu
+$("#food").click(function(){
+  $(".drop-down-menu").slideToggle("slow");
+  $("#food").toggleClass(".selected");
+});
 
 

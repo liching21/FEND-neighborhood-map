@@ -37,6 +37,7 @@ html, body, #map-canvas {
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 5px solid transparent;
+	cursor: pointer;
 }
 
 #food:hover{
@@ -49,6 +50,26 @@ html, body, #map-canvas {
 
 #activity:hover{
 	border-bottom: 5px solid #F29324; /* orange */
+}
+
+.drop-down-menu{
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	margin-top: 15px;
+}
+
+.drop-down-menu ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+.drop-down-menu li{
+	list-style-type: none;
+}
+
+.drop-down-menu li:hover{
+	background-color: #eee;
 }
 
 #box{
