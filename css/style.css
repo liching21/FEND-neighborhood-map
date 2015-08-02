@@ -53,8 +53,8 @@ html, body, #map-canvas {
 
 #box{
 	width: 300px;
-	top: 45px;
-	position: fixed;
+	top: 47px;
+	position: absolute;
 	z-index: 1;
 	right: 0px;
 	background-color: #fff;
@@ -83,7 +83,7 @@ span{
   	width: 194px;
   	display: inline-block;
   	font-size: 13px;
-  	height: 100px;
+  	position: absolute;
 }
 
 #biz-info span{

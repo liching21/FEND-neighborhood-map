@@ -15,7 +15,6 @@ function AppViewModel() {
   this.businessName = ko.observable("Business Name");
   this.businessRating = ko.observable();
   this.businessPic = ko.observable();
-  this.businessType = ko.observable();
   this.businessPhone = ko.observable();
   this.businessAddress = ko.observable();// a function to join the address
   this.businessIsOpen = ko.observable();
@@ -67,23 +66,51 @@ function AppViewModel() {
       phoneNum: "+610292470772",
       markerPoint: null
     },
-    /**,
     {
-      // the rocks
-      lat: -33.8674869,
-      lang: 151.2069902,
-      type: 'accomodation',
+      //Shangri-La Hotel, Sydney
+      lat: -33.86141,
+      lang: 151.206457,
+      type: 'Accomodation',
       icon: "img/blue_MarkerA.png",
+      phoneNum: "+610292506000",
       markerPoint: null
     },
     {
-      //88 Cumberland Street
-      lat: -33.8582199,
-      lang: 151.2074979,
-      type: 'Activity',
-      icon: "img/orange_MarkerA.png",
+      //Park Hyatt Sydney
+      lat: -33.8556346,
+      lang: 151.2098274,
+      type: 'Accomodation',
+      icon: "img/blue_MarkerB.png",
+      phoneNum: "+610292561234",
       markerPoint: null
-    }*/
+    },
+    {
+      //The Australian Heritage Hotel
+      lat: -33.8595267,
+      lang: 151.2070303,
+      type: 'Accomodation',
+      icon: "img/blue_MarkerC.png",
+      phoneNum: "+610292472229",
+      markerPoint: null
+    },
+    {
+      //Rendezvous Hotel Sydney The Rocks
+      lat: -33.8600823,
+      lang: 151.2078215,
+      type: 'Accomodation',
+      icon: "img/blue_MarkerD.png",
+      phoneNum: "+610292516711",
+      markerPoint: null
+    },
+    {
+      //Four Seasons Hotel
+      lat: -33.861667,
+      lang: 151.207666,
+      type: 'Accomodation',
+      icon: "img/blue_MarkerE.png",
+      phoneNum: "+610292380000",
+      markerPoint: null
+    },
     {
       //BridgeClimb Sydney
       lat: -33.8574281,
@@ -130,7 +157,6 @@ function AppViewModel() {
       markerPoint: null
     }
 
-    //TODO: Add hotels and activities
     //ADD: List Functionality
     //ADD: Search functionality
   ]);
@@ -184,7 +210,7 @@ function AppViewModel() {
 
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(marker.get('map'), marker);
-      loadYelp(pins()[num].phoneNum);
+      loadYelp(pins()[num].phoneNum, num);
     });
   }
 

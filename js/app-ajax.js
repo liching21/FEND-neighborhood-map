@@ -3,7 +3,7 @@
  * Description: JS for Ajax Request
  */
 
-function loadYelp(phoneNum){
+function loadYelp(phoneNum, num){
   var wysid = "PQXe6tR4soI4wciLUzWKfQ";
 
   var url = "http://api.yelp.com/phone_search?phone=" + phoneNum + "&ywsid=" + wysid;
@@ -20,7 +20,6 @@ function loadYelp(phoneNum){
 				window.vm.businessRating(thisBusiness.rating_img_url);
 
 				window.vm.businessPic(thisBusiness.photo_url);
-				window.vm.businessType("Type: " + "Food"); //TODO: update this
 				window.vm.businessPhone("Phone: " + thisBusiness.phone);
 				window.vm.businessAddress("Address: " + thisBusiness.address1);
 				window.vm.businessIsOpen("Is Open: " + thisBusiness.is_closed); //TODO: check if it is the opposite
