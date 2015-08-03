@@ -13,7 +13,9 @@
 <body>
   <div id="map-canvas"></div>
   <div id="filter">
-  	<div id="search-bar">Search</div>
+  	<div id="search-bar">
+      <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+    </div>
   	<div id="food">Food</div>
   	<div id="accom">Accomodation</div>
   	<div id="activity">Activity</div>
@@ -22,16 +24,20 @@
   <!-- TODO: add a list of markers -->
   <div class="marker-list" >
 		<ul data-bind="foreach: pins">
-			<li data-bind="text: name">name 1999999 99999 9999999999999</li>
+			<li data-bind="text: name, attr: {id: $index }" ></li>
 		</ul>
 	</div>
+
+
 <!--
-	<ul data-bind="foreach: people">
+	<ul data-bind="foreach: planets">
     <li>
-        Name at position <span data-bind="text: $index"> </span>:
-        <span data-bind="text: name"> </span>
-        <a href="#" data-bind="click: $parent.removePerson">Remove</a>
+        Planet: <b data-bind="text: name"> </b>
+        <div data-bind="if: capital">
+            Capital: <b data-bind="text: capital.cityName"> </b>
+        </div>
     </li>
+</ul>
 </ul>-->
 
 

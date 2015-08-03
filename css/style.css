@@ -66,6 +66,7 @@ html, body, #map-canvas {
 	z-index: 1;
 	top: 47px;
 	left: 0px;
+	cursor: pointer;
 }
 
 .marker-list ul{
@@ -118,4 +119,12 @@ span{
 
 #biz-info span{
 	padding: 2px;
+}
+
+#li-biz-0{
+	background-color: red;
+}
+
+.highlighted{
+	background-color: yellow;
 }

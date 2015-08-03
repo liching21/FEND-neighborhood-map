@@ -267,6 +267,35 @@ function AppViewModel() {
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
 
+$(".marker-list li").click(function(e){
+
+  $(".highlighted").removeClass("highlighted");
+
+  $(this).toggleClass("highlighted");
+
+  // get this li's text
+  var text = $(this).text();
+  var pins = window.vm.pins();
+  // for every marker
+  var marker;
+  for (var i = 0; i < pins.length; i++){
+    marker = pins[i];
+
+    if(text == marker.name){
+      console.log("the marker is " + marker.name);
+      new google.maps.event.trigger( marker.markerPoint, 'click' );
+    }
+  }
+
+
+  //console.log(window.vm.pins()[0].name);
+    // if this marker's text = this li's text then this is the marker
+
+  // marker.click
+
+  //vm.showBizInfo(window.vm.pins()[1].markerPoint,1);
+});
+
 //when menu item is clicked, display drop-down menu
 /**
 $("#food").click(function(){

@@ -36,3 +36,10 @@ function loadYelp(phoneNum, num){
 function clearYelp(){
 	window.vm.businessShow(false);
 }
+
+
+
+// link the bisiness list to the marker
+function linkListToMarker() {
+
+}
