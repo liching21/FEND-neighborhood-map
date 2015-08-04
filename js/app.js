@@ -14,7 +14,7 @@ function AppViewModel() {
 
   var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
 
-  self.businessName = ko.observable("Business Name");
+  self.businessName = ko.observable();
   self.businessRating = ko.observable();
   self.businessPic = ko.observable();
   self.businessPhone = ko.observable();
@@ -24,7 +24,7 @@ function AppViewModel() {
   self.query = ko.observable();
 
   /** creating an array of location pins */
-  self.pins = ko.observableArray([
+  var pins = [
     {
       //BAR 100
       name: "BAR 100",
@@ -175,25 +175,24 @@ function AppViewModel() {
       phoneNum: "+610414468430",
       markerPoint: null
     }
+  ];
 
-    //ADD: List Functionality
-    //ADD: Search functionality
-  ]);
+  self.resultsArray = ko.observableArray(pins);
 
   //create pins LatLng, using that to create and add Marker to the pins array
   var mappedPins = ko.observableArray();
   var pinPoint, pinMarker;
-  for ( var i = 0; i < self.pins().length; i++){
+  for ( var i = 0; i < pins.length; i++){
 
-    pinPoint = new google.maps.LatLng(self.pins()[i].lat,self.pins()[i].lang);
+    pinPoint = new google.maps.LatLng(pins[i].lat,pins[i].lang);
     pinMarker = new google.maps.Marker({
       position: pinPoint,
-      icon: self.pins()[i].icon,
+      icon: pins[i].icon,
       //animation:google.maps.Animation.BOUNCE  to make the marker bounce
       //title: "hello world!"
     });
 
-    self.pins()[i].markerPoint = pinMarker;
+    pins[i].markerPoint = pinMarker;
   }
 
   var map;
@@ -214,10 +213,9 @@ function AppViewModel() {
     });
 
     //adding Markers to the map
-    for ( var i = 0; i < self.pins().length; i++){
-      self.pins()[i].markerPoint.setMap(map);
-      showBizInfo(self.pins()[i].markerPoint, i);
-
+    for (var i in self.resultsArray()){
+      self.resultsArray()[i].markerPoint.setMap(map);
+      showBizInfo(self.resultsArray()[i].markerPoint, i);
     }
   }
 
@@ -231,6 +229,7 @@ function AppViewModel() {
 
     google.maps.event.addListener(marker, 'click', function() {
 
+      console.log("a marker is clicked");
       clearYelp();
 
       // if marker is bouncing - stop bouncing
@@ -239,35 +238,38 @@ function AppViewModel() {
       }
       // else - stop all markers from bouncing, and marker that is clicked on will bounce
       else {
-        for ( var i = 0; i < self.pins().length; i++){
-          var thisMarker = self.pins()[i].markerPoint;
+        var thisMarker;
+        for ( var i in self.resultsArray()){
+          thisMarker = self.resultsArray()[i].markerPoint;
           thisMarker.setAnimation(null);
         }
         marker.setAnimation(google.maps.Animation.BOUNCE);
-        loadYelp(self.pins()[num].phoneNum, num);
+        loadYelp(self.resultsArray()[num].phoneNum, num);
       }
 
     });
   }
 
   //TODO: implement a search bar
-
   self.query = ko.observable("");
-  self.pinsArray = ko.observableArray(this.pins());
-  this.search = ko.computed(function(value){
-    self.pinsArray([]);
-    for (var x in self.pinsArray()){
-      if(pins()[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-        viewModel.pinsArray().push(pins()[x]);
-        console.log(this);
+
+  self.result = ko.pureComputed(function() {
+    // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+    var a = this.query().toLowerCase();
+
+    this.resultsArray([]);
+
+    for (var i in pins){
+        if(pins[i].name.toLowerCase().indexOf(a) >= 0) {
+        //console.log("this.pins() = " +  a);
+        //console.log("pins[i].toLowerCase().indexOf(a =" + pins[i].name.toLowerCase().indexOf(a) + ")");
+        this.resultsArray.push(pins[i]);
       }
     }
+
+    //console.log(this.resultsArray());
+    return this.query() + " yay!";
   }, this);
-
-
-  /*this.query = ko.pureComputed({
-
-  });*/
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -276,9 +278,6 @@ function AppViewModel() {
 // Activates knockout.js
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
-
-//test
-window.vm.query.subscribe(window.vm.search);
 
 
 //highlights the marker list when hovered
@@ -290,14 +289,15 @@ $(".marker-list li").click(function(e){
 
   // get this li's text
   var text = $(this).text();
-  var pins = window.vm.pins();
+  //console.log("the marker is " + marker.name + ", the text is = " + text);
+
   // for every marker
   var marker;
-  for (var i = 0; i < pins.length; i++){
-    marker = pins[i];
+  for (var i in window.vm.resultsArray()){
+    marker = window.vm.resultsArray()[i];
 
     if(text == marker.name){
-      console.log("the marker is " + marker.name);
+      //console.log("the marker is " + marker.name + ", the text is = " + text);
       new google.maps.event.trigger( marker.markerPoint, 'click' );
     }
   }

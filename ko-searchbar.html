@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- TODO: Testing Implement a search -->
-    <p>Search Term: <input data-bind="textInput: searchTerm" /></p>
+    <p>Search Term: <input data-bind="textInput: query" /></p>
     <h2>Hello, <span data-bind="text: result"> </span>!</h2>
 
 
@@ -23,22 +23,22 @@
             var initArray = ['Alice','Bob','Cathy']; //,'Donald','Ella','Frank','Gloria'];
 
             this.resultsArray = ko.observableArray();
-            this.searchTerm = ko.observable("");
+            this.query = ko.observable("");
             this.result = ko.pureComputed(function() {
                 // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
-                var a = this.searchTerm().toLowerCase();
+                var a = this.query().toLowerCase();
 
                 this.resultsArray([]);
                 for (var i in initArray){
                     if(initArray[i].toLowerCase().indexOf(a) >= 0) {
-                    console.log("this.searchTerm().toLowerCase() = " +  a);
+                    console.log("this.query().toLowerCase() = " +  a);
                     console.log("initArray[i].toLowerCase().indexOf(a =" + initArray[i].toLowerCase().indexOf(a) + ")");
                     this.resultsArray.push(initArray[i]);
                   }
                 }
 
                 console.log(this.resultsArray());
-                return this.searchTerm() + " yay!";
+                return this.query() + " yay!";
             }, this);
         };
 
