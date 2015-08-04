@@ -21,6 +21,7 @@ function AppViewModel() {
   self.businessAddress = ko.observable();// a function to join the address
   self.businessIsOpen = ko.observable();
   self.businessShow = ko.observable(false);
+  self.query = ko.observable();
 
   /** creating an array of location pins */
   self.pins = ko.observableArray([
@@ -246,18 +247,27 @@ function AppViewModel() {
         loadYelp(self.pins()[num].phoneNum, num);
       }
 
-      //stop the animation of all markers
-      /*
-      for ( var i = 0; i < self.pins().length; i++){
-        var thisMarker = self.pins()[i].markerPoint;
-        thisMarker.setAnimation(null);
-      }*/
-
-      //marker.setAnimation(google.maps.Animation.BOUNCE);
-      //infowindow.open(marker.get('map'), marker);
-      //loadYelp(self.pins()[num].phoneNum, num);
     });
   }
+
+  //TODO: implement a search bar
+
+  self.query = ko.observable("");
+  self.pinsArray = ko.observableArray(this.pins());
+  this.search = ko.computed(function(value){
+    self.pinsArray([]);
+    for (var x in self.pinsArray()){
+      if(pins()[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+        viewModel.pinsArray().push(pins()[x]);
+        console.log(this);
+      }
+    }
+  }, this);
+
+
+  /*this.query = ko.pureComputed({
+
+  });*/
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -267,6 +277,11 @@ function AppViewModel() {
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
 
+//test
+window.vm.query.subscribe(window.vm.search);
+
+
+//highlights the marker list when hovered
 $(".marker-list li").click(function(e){
 
   $(".highlighted").removeClass("highlighted");
@@ -287,20 +302,7 @@ $(".marker-list li").click(function(e){
     }
   }
 
-
-  //console.log(window.vm.pins()[0].name);
-    // if this marker's text = this li's text then this is the marker
-
-  // marker.click
-
-  //vm.showBizInfo(window.vm.pins()[1].markerPoint,1);
 });
 
-//when menu item is clicked, display drop-down menu
-/**
-$("#food").click(function(){
-  $(".drop-down-menu").slideToggle("slow");
-  $("#food").toggleClass(".selected");
-});**/
 
 

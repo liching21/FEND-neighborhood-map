@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <title>Neighborhood Map</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/knockout-3.3.0.js"></script>
+  <script src="js/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <!-- TODO: Testing Implement a search -->
+    <p>Search Term: <input data-bind="textInput: searchTerm" /></p>
+    <h2>Hello, <span data-bind="text: result"> </span>!</h2>
+
+
+    <script>
+        // Here's my data model
+        var ViewModel = function() {
+
+            var initArray = ['Alice','Bob','Cathy']; //,'Donald','Ella','Frank','Gloria'];
+
+            this.resultsArray = ko.observableArray();
+            this.searchTerm = ko.observable("");
+            this.result = ko.pureComputed(function() {
+                // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+                var a = this.searchTerm().toLowerCase();
+
+                this.resultsArray([]);
+                for (var i in initArray){
+                    if(initArray[i].toLowerCase().indexOf(a) >= 0) {
+                    console.log("this.searchTerm().toLowerCase() = " +  a);
+                    console.log("initArray[i].toLowerCase().indexOf(a =" + initArray[i].toLowerCase().indexOf(a) + ")");
+                    this.resultsArray.push(initArray[i]);
+                  }
+                }
+
+                console.log(this.resultsArray());
+                return this.searchTerm() + " yay!";
+            }, this);
+        };
+
+        ko.applyBindings(new ViewModel()); // This makes Knockout get to work
+
+      </script>
+</body>
+<html>
