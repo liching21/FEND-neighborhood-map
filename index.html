@@ -23,9 +23,9 @@
   </div>
 
   <!-- TODO: add a list of markers -->
-  <div class="marker-list" >
+  <div class="marker-list">
 		<ul data-bind="foreach: resultsArray">
-			<li data-bind="text: name, attr: {id: $index }" ></li>
+			<li data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
 		</ul>
 	</div>
 

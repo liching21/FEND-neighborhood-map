@@ -229,7 +229,7 @@ function AppViewModel() {
 
     google.maps.event.addListener(marker, 'click', function() {
 
-      console.log("a marker is clicked");
+      console.log("a marker is clicked: " + num);
       clearYelp();
 
       // if marker is bouncing - stop bouncing
@@ -239,6 +239,7 @@ function AppViewModel() {
       // else - stop all markers from bouncing, and marker that is clicked on will bounce
       else {
         var thisMarker;
+
         for ( var i in self.resultsArray()){
           thisMarker = self.resultsArray()[i].markerPoint;
           thisMarker.setAnimation(null);
@@ -257,19 +258,70 @@ function AppViewModel() {
     // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
     var a = this.query().toLowerCase();
 
+    // deleting markers
+    for (var i = 0; i < self.resultsArray().length; i++) {
+      google.maps.event.clearListeners(self.resultsArray()[i].markerPoint, 'click');
+      self.resultsArray()[i].markerPoint.setMap(null);
+    }
+
     this.resultsArray([]);
 
     for (var i in pins){
         if(pins[i].name.toLowerCase().indexOf(a) >= 0) {
-        //console.log("this.pins() = " +  a);
-        //console.log("pins[i].toLowerCase().indexOf(a =" + pins[i].name.toLowerCase().indexOf(a) + ")");
         this.resultsArray.push(pins[i]);
       }
     }
 
+    //adding Markers to the map
+    for (var i in self.resultsArray()){
+      self.resultsArray()[i].markerPoint.setMap(map);
+      console.log("number i is before showBiz " + i);
+      showBizInfo(self.resultsArray()[i].markerPoint, i);
+
+    }
+
+    console.log(this.resultsArray());
     //console.log(this.resultsArray());
     return this.query() + " yay!";
   }, this);
+
+
+  //TODO: clickec function is a mess!
+  //REVERT by removing this code and uncommeting code below
+  //clicked function
+  self.clickedFunction = function(data, event) {
+
+      console.log(data);
+      console.log(event);
+      var listItem = event.target;
+
+      //do normal action
+      $(".highlighted").removeClass("highlighted");
+      console.log("li was clicked");
+
+      $(listItem).toggleClass("highlighted");
+
+      // get this li's text
+      var text = $(listItem).text();
+      //console.log("the marker is " + marker.name + ", the text is = " + text);
+
+      // for every marker
+      var marker;
+      for (var i in self.resultsArray()){
+        marker = self.resultsArray()[i];
+
+        if(text == marker.name){
+          //console.log("the marker is " + marker.name + ", the text is = " + text);
+          //new google.maps.event.trigger( marker.markerPoint, 'click' );
+          console.log("loading yelp:");
+          console.log(self.resultsArray()[i]);
+          loadYelp(self.resultsArray()[i].phoneNum, i);
+        }
+
+      }
+  };
+
+
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -279,30 +331,30 @@ function AppViewModel() {
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
 
-
 //highlights the marker list when hovered
+/*
 $(".marker-list li").click(function(e){
+    console.log("li was clicked");
 
-  $(".highlighted").removeClass("highlighted");
+    $(".highlighted").removeClass("highlighted");
 
-  $(this).toggleClass("highlighted");
+    $(this).toggleClass("highlighted");
 
-  // get this li's text
-  var text = $(this).text();
-  //console.log("the marker is " + marker.name + ", the text is = " + text);
+    // get this li's text
+    var text = $(this).text();
+    //console.log("the marker is " + marker.name + ", the text is = " + text);
 
-  // for every marker
-  var marker;
-  for (var i in window.vm.resultsArray()){
-    marker = window.vm.resultsArray()[i];
+    // for every marker
+    var marker;
+    for (var i in window.vm.resultsArray()){
+      marker = window.vm.resultsArray()[i];
 
-    if(text == marker.name){
-      //console.log("the marker is " + marker.name + ", the text is = " + text);
-      new google.maps.event.trigger( marker.markerPoint, 'click' );
+      if(text == marker.name){
+        //console.log("the marker is " + marker.name + ", the text is = " + text);
+        new google.maps.event.trigger( marker.markerPoint, 'click' );
+      }
     }
-  }
-
 });
-
+*/
 
 
