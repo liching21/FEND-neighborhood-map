@@ -69,11 +69,11 @@ Activity: #F29324; /* orange */
 }
 
 .marker-list li.highlighted:hover{
-	background-color: orange;
+	background-color: #FFCC99;
 }
 
 .highlighted{
-	background-color: orange;
+	background-color: #FFCC99;
 }
 
 .marker-list li:first-child{

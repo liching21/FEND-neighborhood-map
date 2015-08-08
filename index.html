@@ -1,3 +1,6 @@
+<!-- Author: Liching Yew -->
+<!-- Description: Project 5 the Neighborhood map Udacity's FEND -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +15,19 @@
 </head>
 <body>
   <div id="map-canvas"></div>
+  <!-- The Search bar -->
 	<div id="search-bar">
     <input placeholder="Search… The Rocks, Sydney" type="text" data-bind="textInput: query, text: result()">
   </div>
 
-  <!-- TODO: add a list of markers -->
+  <!-- Add a list of markers -->
   <div class="marker-list">
 		<ul data-bind="foreach: resultsArray">
 			<li data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
 		</ul>
 	</div>
 
-
+  <!-- Add a panel to display the business information -->
   <div id="box" data-bind="visible: businessShow">
   	<span class="title" data-bind="text: businessName"></span>
   	<img class="rating" data-bind="attr:{src: businessRating}">

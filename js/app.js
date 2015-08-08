@@ -3,17 +3,18 @@
  * 	Description: app.js
  */
 
- /** Code fo the ViewModel */
+ /** Code for the ViewModel */
 function AppViewModel() {
 
   var self = this;
 
-  //Center of map location is Circular Quay
-  var centerLat = ko.observable(-33.8578066);
-  var centerLang = ko.observable(151.2082002);
+  // Set the center location of the map
+  var centerLat = -33.8578066;
+  var centerLang = 151.2082002;
+  var mapCenter = new google.maps.LatLng(centerLat, centerLang);
 
-  var mapCenter = new google.maps.LatLng(centerLat(), centerLang());
-
+  // The business information observabales
+  // each time a new business is selected is would be updated and displayed
   self.businessName = ko.observable();
   self.businessRating = ko.observable();
   self.businessPic = ko.observable();
@@ -21,12 +22,10 @@ function AppViewModel() {
   self.businessType = ko.observable();
   self.businessAddress = ko.observable();// a function to join the address
   self.businessShow = ko.observable(false);
-  self.query = ko.observable();
 
-  /** creating an array of location pins */
+  /** creating an array of location pins (points) */
   var pins = [
     {
-      //BAR 100
       name: "BAR 100",
       lat: -33.858218,
       lang: 151.209388,
@@ -36,7 +35,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Pancakes on the Rocks
       name: "Pancakes on the Rocks",
       lat: -33.8571762,
       lang: 151.2088311,
@@ -46,7 +44,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Caminetto Restaurant
       name: "Caminetto Restaurant",
       lat: -33.8588066,
       lang: 151.2082002,
@@ -56,7 +53,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //La Renaissance Cafe
       name: "La Renaissance Cafe",
       lat: -33.859403,
       lang: 151.20842,
@@ -66,7 +62,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Barcycle Cafe and Store
       name: "Barcycle Cafe and Store",
       lat: -33.8539691,
       lang: 151.2083385,
@@ -76,7 +71,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Shangri-La Hotel, Sydney
       name: "Shangri-La Hotel, Sydney",
       lat: -33.86141,
       lang: 151.206457,
@@ -86,7 +80,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Park Hyatt Sydney
       name: "Park Hyatt Sydney",
       lat: -33.8556346,
       lang: 151.2098274,
@@ -96,7 +89,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //The Australian Heritage Hotel
       name: "The Australian Heritage Hotel",
       lat: -33.8595267,
       lang: 151.2070303,
@@ -106,7 +98,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Rendezvous Hotel Sydney The Rocks
       name: "Rendezvous Hotel Sydney The Rocks",
       lat: -33.8600823,
       lang: 151.2078215,
@@ -116,7 +107,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Four Seasons Hotel
       name: "Four Seasons Hotel",
       lat: -33.861667,
       lang: 151.207666,
@@ -126,7 +116,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //BridgeClimb Sydney
       name: "BridgeClimb Sydney",
       lat: -33.8574281,
       lang: 151.2077354,
@@ -136,7 +125,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Sydney Observatory
       name: "Sydney Observatory",
       lat: -33.8587909,
       lang: 151.2051614,
@@ -146,7 +134,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Bonza Bike Tours
       name: "Bonza Bike Tours",
       lat: -33.859414,
       lang: 151.208107,
@@ -156,7 +143,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //Museum Of Contemporary Art
       name: "Museum Of Contemporary Art",
       lat: -33.860046,
       lang: 151.20897,
@@ -166,7 +152,6 @@ function AppViewModel() {
       markerPoint: null
     },
     {
-      //PaniQ Room
       name: "PaniQ Room",
       lat: -33.859413,
       lang: 151.207348,
@@ -177,6 +162,8 @@ function AppViewModel() {
     }
   ];
 
+  //initiating the search query and the results in the form of an Array
+  self.query = ko.observable("");
   self.resultsArray = ko.observableArray(pins);
 
   //create pins LatLng, using that to create and add Marker to the pins array
@@ -187,6 +174,7 @@ function AppViewModel() {
     pinPoint = new google.maps.LatLng(pins[i].lat,pins[i].lang);
     pinMarker = new google.maps.Marker({
       position: pinPoint,
+      // giving each pin a unique icon
       icon: pins[i].icon
     });
 
@@ -195,6 +183,7 @@ function AppViewModel() {
 
   var map;
 
+  // Initialising the map
   function initialize() {
 
     //Setting the map
@@ -207,6 +196,7 @@ function AppViewModel() {
       mapTypeControlOptions: {
         position:google.maps.ControlPosition.BOTTOM_CENTER
       },
+      // Styling the map, code from Snazzy Maps
       styles:[
       {
           "featureType": "road",
@@ -252,23 +242,18 @@ function AppViewModel() {
       }]
     });
 
-    //adding Markers to the map
+    //adding each marker to the map
     for (var i in self.resultsArray()){
       self.resultsArray()[i].markerPoint.setMap(map);
-      //showBizInfo(self.resultsArray()[i].markerPoint, i);
     }
   }
 
+  // Showing the businesss information
   function showBizInfo(marker, num) {
-
-    //remove the map info window
-    /*var message = pins()[num].type;
-    var infowindow = new google.maps.InfoWindow({
-      content: message
-    });*/
 
     google.maps.event.addListener(marker, 'click', function() {
 
+      // clear previous display (if there is any)
       clearYelp();
       $(".highlighted").removeClass("highlighted");
 
@@ -276,10 +261,9 @@ function AppViewModel() {
       if (marker.getAnimation() != null) {
         marker.setAnimation(null);
       }
-
-      // else - stop all markers from bouncing, and marker that is clicked on will bounce
+      // else - stop all markers from bouncing, and marker that is clicked will bounce,
+      // list item will be highlighted and show business information
       else {
-
         var thisMarker;
 
         for ( var i in self.resultsArray()){
@@ -288,51 +272,48 @@ function AppViewModel() {
         }
         marker.setAnimation(google.maps.Animation.BOUNCE);
         loadYelp(self.resultsArray()[num].phoneNum, num);
-        hightlightList(num);
+        $("#" + num).toggleClass("highlighted");
       }
-
     });
   }
 
-  //TODO: implement a search bar
-  self.query = ko.observable("");
-
+  // updating the resultArray, based on the query
   self.result = ko.pureComputed(function() {
     var a = this.query().toLowerCase();
 
-    // deleting markers
-    for (var i = 0; i < self.resultsArray().length; i++) {
+    // deleting exisiting markers, and remove event listeners
+    for (var i in self.resultsArray()) {
       google.maps.event.clearListeners(self.resultsArray()[i].markerPoint, 'click');
       self.resultsArray()[i].markerPoint.setMap(null);
     }
 
+    //clear the resultsArray()
     this.resultsArray([]);
 
+    // for each pin that satisfy the query, add it to the resultsArray
     for (var i in pins){
         if(pins[i].name.toLowerCase().indexOf(a) >= 0) {
         this.resultsArray.push(pins[i]);
       }
     }
 
-    //adding Markers to the map
+    //re-adding Markers to the map
     for (var i in self.resultsArray()){
       self.resultsArray()[i].markerPoint.setMap(map);
-      //console.log("number i is before showBiz " + i);
       showBizInfo(self.resultsArray()[i].markerPoint, i);
-
     }
-
-    return this.query();
-    }, this);
+  }, this);
 
 
-  //This function is clicked
+  // this function is called when the list item is clicked
   self.clickedFunction = function(data, event) {
 
+      //get the name of the business
       var listItem = event.target;
       var text = $(listItem).text()
 
-      // for every marker
+      // for every marker compare the business name to the one clicked to trigger
+      // the corresponding marker and the load the business info
       var marker;
       for (var i in self.resultsArray()){
         marker = self.resultsArray()[i];
@@ -344,19 +325,7 @@ function AppViewModel() {
         }
       }
   };
-
-  //given the index num of the array, highlight the li
-  var hightlightList = function(num) {
-
-      // get this li's text
-      var idText = $("#" + num).text();
-
-      $("#" + num).toggleClass("highlighted");
-  }
-
-
   google.maps.event.addDomListener(window, 'load', initialize);
-
 }
 
 // Activates knockout.js

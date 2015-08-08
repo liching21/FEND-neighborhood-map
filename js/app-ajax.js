@@ -3,8 +3,9 @@
  * Description: JS for Ajax Request
  */
 
+// AJAX request to Yelp using the phone number of the business to retrieve other business information from Yelp
 function loadYelp(phoneNum, num){
-  var wysid = "PQXe6tR4soI4wciLUzWKfQ";
+  var wysid = "PQXe6tR4soI4wciLUzWKfQ"; // provided by Yelp
 
   var url = "http://api.yelp.com/phone_search?phone=" + phoneNum + "&ywsid=" + wysid;
 
@@ -26,18 +27,12 @@ function loadYelp(phoneNum, num){
       window.vm.businessType("Type: " + window.vm.resultsArray()[num].type);
      },
      error:function(){
-         alert("Error");
+         alert("Error, ajax request failed");
      }
  })
 }
 
+// hide the business information panel
 function clearYelp(){
 	window.vm.businessShow(false);
-}
-
-
-
-// link the bisiness list to the marker
-function linkListToMarker() {
-
 }
