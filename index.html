@@ -12,14 +12,8 @@
 </head>
 <body>
   <div id="map-canvas"></div>
-  <div id="filter">
-  	<div id="search-bar">
-      <input placeholder="Search…" type="search" data-bind="textInput: query">
-      <h2>Hello, <span data-bind="text: result"> </span>!</h2>
-    </div>
-  	<div id="food" >Food</div>
-  	<div id="accom">Accomodation</div>
-  	<div id="activity">Activity</div>
+	<div id="search-bar">
+    <input placeholder="Search…" type="text" data-bind="textInput: query, text: result()">
   </div>
 
   <!-- TODO: add a list of markers -->
@@ -32,13 +26,12 @@
 
   <div id="box" data-bind="visible: businessShow">
   	<span class="title" data-bind="text: businessName"></span>
-  	<img data-bind="attr:{src: businessRating}">
+  	<img class="rating" data-bind="attr:{src: businessRating}">
   	<div class="line"></div>
 
   	<img id="biz-pic" data-bind="attr:{src: businessPic}" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div id="biz-info">
   		<span data-bind="text: businessPhone">Phone: 02 8888 8888</span>
   		<span data-bind="text: businessAddress">Address: 47 Argyle St, The Rocks, NSW, Australia</span>
-  		<span data-bind="text: businessIsOpen">Is Open: Yes</span>
   	</div></div>
   <script src="js/app-ajax.js"></script>
 </body>

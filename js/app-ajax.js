@@ -23,7 +23,6 @@ function loadYelp(phoneNum, num){
 			window.vm.businessPic(thisBusiness.photo_url);
 			window.vm.businessPhone("Phone: " + thisBusiness.phone);
 			window.vm.businessAddress("Address: " + thisBusiness.address1);
-			window.vm.businessIsOpen("Is Open: " + thisBusiness.is_closed); //TODO: check if it is the opposite
      },
      error:function(){
          alert("Error");

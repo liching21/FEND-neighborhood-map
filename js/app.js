@@ -19,7 +19,6 @@ function AppViewModel() {
   self.businessPic = ko.observable();
   self.businessPhone = ko.observable();
   self.businessAddress = ko.observable();// a function to join the address
-  self.businessIsOpen = ko.observable();
   self.businessShow = ko.observable(false);
   self.query = ko.observable();
 
@@ -256,7 +255,6 @@ function AppViewModel() {
   self.query = ko.observable("");
 
   self.result = ko.pureComputed(function() {
-    // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
     var a = this.query().toLowerCase();
 
     // deleting markers
@@ -281,8 +279,8 @@ function AppViewModel() {
 
     }
 
-    return this.query() + " yay!";
-  }, this);
+    return this.query();
+    }, this);
 
 
   //This function is clicked
@@ -312,32 +310,6 @@ function AppViewModel() {
 
       $("#" + num).toggleClass("highlighted");
   }
-
-  //TODO: filter the selected options
-  /*
-  this.filter = function(filter){
-
-    console.log("am i here?");
-    // deleting markers
-    for (var i = 0; i < self.resultsArray().length; i++) {
-      google.maps.event.clearListeners(self.resultsArray()[i].markerPoint, 'click');
-      self.resultsArray()[i].markerPoint.setMap(null);
-    }
-
-    this.resultsArray([]);
-
-    for (var i in pins){
-        if(pins[i].type == filter) {
-        this.resultsArray.push(pins[i]);
-      }
-    }
-
-    //adding Markers to the map
-    for (var i in self.resultsArray()){
-      self.resultsArray()[i].markerPoint.setMap(map);
-      showBizInfo(self.resultsArray()[i].markerPoint, i);
-    }
-  }*/
 
 
   google.maps.event.addDomListener(window, 'load', initialize);

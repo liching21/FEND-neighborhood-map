@@ -15,50 +15,33 @@ html, body, #map-canvas {
   font-family: Open Sans;
 }
 
-#filter{
+#search-bar{
 	z-index: 1;
 	top: 0px;
 	position: absolute;
-    width:100%;
-    background: white;
     box-sizing: border-box;
-  	padding: 0px 0px 0px 10px;
-}
-
-#search-bar{
 	display: inline-block;
-	width: 40%;
-	padding-top: 10px;
 }
 
-#food, #accom, #activity{
-	float: right;
-	display: inline-block;
-	width: 10%;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-bottom: 5px solid transparent;
-	cursor: pointer;
+input{
+	background-color: #F5F5DC;
+	width: 400px;
+	font-size: 16px;
+	padding: 5px;
+	padding-left: 12px;
+	border-radius: 5px;
+	border: 2px solid #006666;
+	margin: 5px;
+	box-shadow: 2px 2px 4px #555;
 }
 
-#food:hover{
-	/*order-bottom: 5px solid #A1E789;  /* green */
-	background-color: #A1E789;
-	color: #fff;
+input:focus{
+	outline: none;
 }
-
-#accom:hover{
-	/*border-bottom: 5px solid #678FEB;*/ /* blue */
-	background-color: #678FEB;
-	color: #fff;
-}
-
-#activity:hover{
-	/*border-bottom: 5px solid #F29324; /* orange */
-	background-color: #F29324;
-	color: #fff;
-}
+/**
+Food: #A1E789;  /* green
+Accomodation: #678FEB;*/ /* blue
+Activity: #F29324; /* orange */
 
 .marker-list{
 	position: absolute;
@@ -67,15 +50,42 @@ html, body, #map-canvas {
 	top: 47px;
 	left: 0px;
 	cursor: pointer;
+	border-radius: 5px;
+	margin: 5px;
+	border: 2px solid #006666;
+	box-shadow: 2px 2px 4px #555;
+	background-color: #F5F5DC;
 }
 
 .marker-list ul{
 	padding: 0px;
 	margin: 0px;
+
 }
 
 .marker-list li{
 	list-style-type: none;
+	padding: 2px 6px;
+}
+
+.marker-list li.highlighted:hover{
+	background-color: orange;
+}
+
+.highlighted{
+	background-color: orange;
+}
+
+.marker-list li:first-child{
+	padding-top: 4px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.marker-list li:last-child{
+	padding-bottom: 4px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .marker-list li:hover{
@@ -83,31 +93,43 @@ html, body, #map-canvas {
 }
 
 #box{
-	width: 300px;
-	top: 47px;
+	width: 350px;
+	top: 0px;
 	position: absolute;
 	z-index: 1;
 	right: 0px;
 	background-color: #fff;
-}
-
-span{
-	display: inline-block;
+	border-radius: 3px;
+  	margin: 5px;
+  	border: 2px solid #006666;
+	box-shadow: 2px 2px 4px #555;
+	background-color: #F5F5DC;
 }
 
 .title{
+	display: block;
 	padding: 4px 6px;
+	text-align: center;
+}
+
+.rating{
+	display: block;
+  	margin: auto;
+  	padding-bottom: 6px;
 }
 
 .line{
 	border-bottom: 1px solid #ddd;
 	width: 100%;
 	height: 1px;
+	margin-bottom: 6px;
 }
 
 #biz-pic{
 	display: inline-block;
-	padding-right:  6px;
+	padding: 6px;
+	margin-bottom: -5px;
+	border-radius: 50%;
 }
 
 #biz-info{
@@ -115,16 +137,9 @@ span{
   	display: inline-block;
   	font-size: 13px;
   	position: absolute;
+  	text-align: center;
 }
 
 #biz-info span{
 	padding: 2px;
-}
-
-#li-biz-0{
-	background-color: red;
-}
-
-.highlighted{
-	background-color: yellow;
 }
