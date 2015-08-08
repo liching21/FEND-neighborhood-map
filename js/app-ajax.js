@@ -23,6 +23,7 @@ function loadYelp(phoneNum, num){
 			window.vm.businessPic(thisBusiness.photo_url);
 			window.vm.businessPhone("Phone: " + thisBusiness.phone);
 			window.vm.businessAddress("Address: " + thisBusiness.address1);
+      window.vm.businessType("Type: " + window.vm.resultsArray()[num].type);
      },
      error:function(){
          alert("Error");

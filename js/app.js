@@ -18,6 +18,7 @@ function AppViewModel() {
   self.businessRating = ko.observable();
   self.businessPic = ko.observable();
   self.businessPhone = ko.observable();
+  self.businessType = ko.observable();
   self.businessAddress = ko.observable();// a function to join the address
   self.businessShow = ko.observable(false);
   self.query = ko.observable();
@@ -205,8 +206,50 @@ function AppViewModel() {
       panControl: false,
       mapTypeControlOptions: {
         position:google.maps.ControlPosition.BOTTOM_CENTER
-      }
-
+      },
+      styles:[
+      {
+          "featureType": "road",
+          "elementType": "geometry",
+          "stylers": [
+              {
+                  "lightness": 100
+              },
+              {
+                  "visibility": "simplified"
+              }
+          ]
+      },
+      {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [
+              {
+                  "visibility": "on"
+              },
+              {
+                  "color": "#C6E2FF"
+              }
+          ]
+      },
+      {
+          "featureType": "poi",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#C5E3BF"
+              }
+          ]
+      },
+      {
+          "featureType": "road",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#D1D1B8"
+              }
+          ]
+      }]
     });
 
     //adding Markers to the map

@@ -13,7 +13,7 @@
 <body>
   <div id="map-canvas"></div>
 	<div id="search-bar">
-    <input placeholder="Search…" type="text" data-bind="textInput: query, text: result()">
+    <input placeholder="Search… The Rocks, Sydney" type="text" data-bind="textInput: query, text: result()">
   </div>
 
   <!-- TODO: add a list of markers -->
@@ -30,8 +30,9 @@
   	<div class="line"></div>
 
   	<img id="biz-pic" data-bind="attr:{src: businessPic}" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div id="biz-info">
-  		<span data-bind="text: businessPhone">Phone: 02 8888 8888</span>
-  		<span data-bind="text: businessAddress">Address: 47 Argyle St, The Rocks, NSW, Australia</span>
+  		<span data-bind="text: businessPhone"></span>
+  		<span data-bind="text: businessAddress"></span>
+      <span data-bind="text: businessType"><s/pan>
   	</div></div>
   <script src="js/app-ajax.js"></script>
 </body>
