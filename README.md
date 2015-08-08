@@ -1,6 +1,8 @@
 FEND Project 5 - The Neighborhood Map
 =====================================
 
+![Screenshot of the Neighborhood map](https://github.com/liching32/FEND-neighborhood-map/img/neighborhood-map-screenshot.png "The screenshot of the Neighborhood Map")
+
 by Liching Yew
 
 About this project
@@ -14,8 +16,8 @@ To view this project, please visit the link below:
 
 http://lichingyew.com/FEND-neighborhood-map
 
-Refences
---------
+References
+-----------
 
 Map marker images are from http://www.benjaminkeen.com/google-maps-coloured-markers/
 
@@ -27,5 +29,5 @@ Future Add Ons
 -------------------
 
 - Filter based to the type of businesss
-- minified code
-- Modify css for mobile
+- Minified code
+- Search bar auto complete
