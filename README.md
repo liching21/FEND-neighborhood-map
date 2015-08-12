@@ -1,9 +1,8 @@
 FEND Project 5 - The Neighborhood Map
 =====================================
-
-![Screenshot of the Neighborhood map](https://github.com/liching21/FEND-neighborhood-map/img/neighborhood-map-screenshot.png "The screenshot of the Neighborhood Map")
-
 by Liching Yew
+
+![Screenshot of the Neighborhood map](http://lichingyew.com/FEND-neighborhood-map/img/neighborhood-map-screenshot.png "The screenshot of the Neighborhood Map")
 
 About this project
 -------------------
