@@ -15,26 +15,26 @@
   <script src="js/app.js" defer="defer"></script>
 </head>
 <body>
-  <div id="map-canvas"></div>
+  <div id="map-canvas" class="mapCanvas"></div>
   <!-- The Search bar -->
-	<div id="search-bar">
+	<div class="searchBar">
     <input placeholder="Search… The Rocks, Sydney" type="text" data-bind="textInput: query, text: result()">
   </div>
 
   <!-- Add a list of markers -->
   <div class="marker-list">
-		<ul data-bind="foreach: resultsArray">
-			<li data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
+		<ul class="list-ul" data-bind="foreach: resultsArray">
+			<li class="list-option" data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
 		</ul>
 	</div>
 
   <!-- Add a panel to display the business information -->
-  <div id="box" data-bind="visible: businessShow">
+  <div class="box" data-bind="visible: businessShow">
   	<span class="title" data-bind="text: businessName"></span>
   	<img class="rating" data-bind="attr:{src: businessRating}">
   	<div class="line"></div>
 
-  	<img id="biz-pic" data-bind="attr:{src: businessPic}" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div id="biz-info">
+  	<img class="biz-pic" data-bind="attr:{src: businessPic}" src="http://media2.fl.yelpcdn.com/bpthumb/LT0PMGhNnGjJMytHvpi6qw/ms"><div class="biz-info">
   		<span data-bind="text: businessPhone"></span>
   		<span data-bind="text: businessAddress"></span>
       <span data-bind="text: businessType"><s/pan>

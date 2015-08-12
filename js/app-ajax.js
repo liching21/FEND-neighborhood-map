@@ -29,7 +29,7 @@ function loadYelp(phoneNum, num){
      error:function(){
          alert("Error, ajax request failed");
      }
- })
+ });
 }
 
 // hide the business information panel

@@ -310,7 +310,7 @@ function AppViewModel() {
 
       //get the name of the business
       var listItem = event.target;
-      var text = $(listItem).text()
+      var text = $(listItem).text();
 
       // for every marker compare the business name to the one clicked to trigger
       // the corresponding marker and the load the business info
@@ -331,5 +331,3 @@ function AppViewModel() {
 // Activates knockout.js
 window.vm = new AppViewModel();
 ko.applyBindings(vm);
-
-
