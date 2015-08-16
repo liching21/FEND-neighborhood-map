@@ -165,6 +165,7 @@ function AppViewModel() {
   //initiating the search query and the results in the form of an Array
   self.query = ko.observable("");
   self.resultsArray = ko.observableArray(pins);
+  self.resultsArrayLength = ko.observable(self.resultsArray.length());
 
   //create pins LatLng, using that to create and add Marker to the pins array
   var mappedPins = ko.observableArray();
@@ -243,7 +244,7 @@ function AppViewModel() {
     });
 
     //adding each marker to the map
-    for (var i in self.resultsArray()){
+    for (var i = 0, i < self.resultsArrayLength; i++){
       self.resultsArray()[i].markerPoint.setMap(map);
     }
   }
@@ -266,7 +267,7 @@ function AppViewModel() {
       else {
         var thisMarker;
 
-        for ( var i in self.resultsArray()){
+        for (var i = 0, i < self.resultsArrayLength; i++){
           thisMarker = self.resultsArray()[i].markerPoint;
           thisMarker.setAnimation(null);
         }
@@ -282,7 +283,7 @@ function AppViewModel() {
     var a = this.query().toLowerCase();
 
     // deleting exisiting markers, and remove event listeners
-    for (var i in self.resultsArray()) {
+    for (var i = 0, i < self.resultsArrayLength; i++) {
       google.maps.event.clearListeners(self.resultsArray()[i].markerPoint, 'click');
       self.resultsArray()[i].markerPoint.setMap(null);
     }
@@ -298,7 +299,7 @@ function AppViewModel() {
     }
 
     //re-adding Markers to the map
-    for (var i in self.resultsArray()){
+    for (var i = 0, i < self.resultsArrayLength; i++){
       self.resultsArray()[i].markerPoint.setMap(map);
       showBizInfo(self.resultsArray()[i].markerPoint, i);
     }
@@ -315,7 +316,7 @@ function AppViewModel() {
       // for every marker compare the business name to the one clicked to trigger
       // the corresponding marker and the load the business info
       var marker;
-      for (var i in self.resultsArray()){
+      for (var i = 0, i < self.resultsArrayLength; i++){
         marker = self.resultsArray()[i];
 
         if(text == marker.name){
