@@ -5,6 +5,7 @@
 
 // AJAX request to Yelp using the phone number of the business to retrieve other business information from Yelp
 function loadYelp(phoneNum, num){
+
   var wysid = "PQXe6tR4soI4wciLUzWKfQ"; // provided by Yelp
 
   var url = "http://api.yelp.com/phone_search?phone=" + phoneNum + "&ywsid=" + wysid;
@@ -29,8 +30,31 @@ function loadYelp(phoneNum, num){
      error:function(){
          alert("Error, ajax request failed");
      }
- });
+  });
 }
+
+// AJAX request to FourSquare to access further business information
+/**
+function loadFourSquare(num){
+
+  var clientId = "YSJ15TUOHFH3DACTYK4DQIZSYXNNNO3QHJGEOMQCQA3Q5L5B"; // provided by FourSquare
+  var clientSecret = "HE4GEXN5J4M2KQHY0GXSIGQ3NWPT3L0U2KDEKLXPWWEOPBCR"; // provided by FourSquare
+  var version = "20150816" //the date yyyy/mm/dd
+  var url = "https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=" + clientId + "&client_secret=" + clientSecret+ "&v=" + version;
+
+  $.ajax({
+       url:url,
+       dataType: 'jsonp',
+       success:function(json){
+
+        console.log("test");
+
+       },
+       error:function(){
+           alert("Error, ajax request failed");
+       }
+   });
+}*/
 
 // hide the business information panel
 function clearYelp(){
