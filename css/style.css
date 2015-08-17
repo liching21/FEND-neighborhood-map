@@ -96,16 +96,16 @@ Activity: #F29324; /* orange */
 
 .box{
 	width: 350px;
-	top: 0px;
-	position: absolute;
-	z-index: 1;
-	right: 0px;
-	background-color: #fff;
-	border-radius: 3px;
+	/*top: 0px;*/
+	/*position: absolute;*/
+	/*z-index: 1;*/
+	/*right: 0px;*/
+	/*background-color: #fff;*/
+	/*border-radius: 3px;*/
   	margin: 5px;
-  	border: 2px solid #066;
-	box-shadow: 2px 2px 4px #555;
-	background-color: #f5f5dc;
+  	/*border: 2px solid #066;*/
+	/*box-shadow: 2px 2px 4px #555;*/
+	/*background-color: #f5f5dc;*/
 }
 
 .title{
@@ -140,6 +140,7 @@ Activity: #F29324; /* orange */
   	font-size: 13px;
   	position: absolute;
   	text-align: center;
+  	margin: auto;
 }
 
 .biz-info span{

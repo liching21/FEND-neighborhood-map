@@ -183,6 +183,8 @@ function AppViewModel() {
   }
 
   var map;
+  var InfoWindow;
+  var contentString;
 
   // Initialising the map
   function initialize() {
@@ -247,6 +249,11 @@ function AppViewModel() {
     for (var i = 0; i < self.resultsArrayLength(); i++){
       self.resultsArray()[i].markerPoint.setMap(map);
     }
+
+    //creating an info window
+    infoWindow = new google.maps.InfoWindow({
+      content: contentString
+    });
   }
 
   // Showing the businesss information
@@ -257,6 +264,9 @@ function AppViewModel() {
       // clear previous display (if there is any)
       clearYelp();
       $(".highlighted").removeClass("highlighted");
+
+      //TODO: add info window
+      infoWindow.open(map, marker);
 
       // if marker is bouncing - stop bouncing
       if (marker.getAnimation() != null) {
