@@ -186,6 +186,9 @@ function AppViewModel() {
   var InfoWindow;
   var contentString;
 
+  //TODO: store email address and name of nearby places.
+  self.nearbyPlaces = ko.observableArray();
+
   // Initialising the map
   function initialize() {
 
@@ -265,17 +268,17 @@ function AppViewModel() {
       clearYelp();
       $(".highlighted").removeClass("highlighted");
 
-      //TODO: add info window
-      infoWindow.open(map, marker);
-
       // if marker is bouncing - stop bouncing
       if (marker.getAnimation() != null) {
         marker.setAnimation(null);
+        infoWindow.close();
       }
       // else - stop all markers from bouncing, and marker that is clicked will bounce,
       // list item will be highlighted and show business information
       else {
         var thisMarker;
+        //TODO: add info window
+        infoWindow.open(map, marker);
 
         for (var i = 0; i < self.resultsArrayLength(); i++){
           thisMarker = self.resultsArray()[i].markerPoint;

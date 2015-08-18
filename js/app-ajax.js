@@ -16,10 +16,6 @@ function loadYelp(phoneNum, num){
      dataType: 'jsonp',
      success:function(json){
 
-      //Update the ko observable based on the information received
-      //console.log(json);
-      //infoWindow.setContent("<h1>" + this.Business[1].name + "</h1>");
-
       var thisBusiness = json.businesses[0];
 
     	vm.businessShow(true);
@@ -30,16 +26,14 @@ function loadYelp(phoneNum, num){
 			vm.businessAddress("Address: " + thisBusiness.address1);
       vm.businessType("Type: " + vm.resultsArray()[num].type);
 
-      //the content of the info window*/
-      contentString = '<div class="box"><span class="title">' + vm.businessName() + '</span><img class="rating" src=' + vm.businessRating() + '><div class="line"></div><img class="biz-pic" src=' + vm.businessPic() + '><div class="biz-info"><span>' + vm.businessPhone() + '</span><span>' + vm.businessAddress() + '</span><span>' + vm.businessType() + '</span></div></div>';
+      loadFourSquare(num);
 
-      infoWindow.setContent(contentString);
      },
      error:function(){
          alert("Error, ajax request failed");
      }
   });
-  loadFourSquare(num);
+
 }
 
 // AJAX request to FourSquare to access further business information
@@ -48,7 +42,7 @@ function loadFourSquare(num){
   var clientId = "YSJ15TUOHFH3DACTYK4DQIZSYXNNNO3QHJGEOMQCQA3Q5L5B"; // provided by FourSquare
   var clientSecret = "HE4GEXN5J4M2KQHY0GXSIGQ3NWPT3L0U2KDEKLXPWWEOPBCR"; // provided by FourSquare
   var version = "20150816" //the date yyyy/mm/dd
-  var url = "https://api.foursquare.com/v2/venues/search?ll=" + window.vm.resultsArray()[num].lat + "," + window.vm.resultsArray()[num].lang + "&client_id=" + clientId + "&client_secret="+ clientSecret+ "&v=" + version;
+  var url = "https://api.foursquare.com/v2/venues/search?ll=" + vm.resultsArray()[num].lat + "," + vm.resultsArray()[num].lang + "&client_id=" + clientId + "&client_secret="+ clientSecret+ "&v=" + version;
 
   $.ajax({
        url:url,
@@ -58,16 +52,27 @@ function loadFourSquare(num){
         this.Business = json.response.venues;
 
         //Trying to find out the names of the API's returned
-        /*
+
         console.log(json);
-        console.log(this.Business[0].name);
-        console.log("name 1 is = " + this.Business[1].name);
-        console.log(this.Business[2].name);
+        /*console.log(this.Business[2].name);
         console.log(this.Business[4].name);
         console.log(this.Business[5].name);
         console.log(this.Business[6].name);
         console.log(this.Business[7].name);
         console.log(this.Business[8].name);*/
+        //clear the nearbyPlaces array
+        vm.nearbyPlaces([]);
+        var i = 0;
+        var counter = 0;
+        while( counter < 4){
+          //if (this.Business[i].url != null){
+            vm.nearbyPlaces.push({name: this.Business[i].name});
+            counter++;
+            i++;
+          //}
+        }
+
+        concatInfoWindowHTML();
 
        },
        error:function(){
@@ -76,7 +81,16 @@ function loadFourSquare(num){
    });
 }
 
+function concatInfoWindowHTML(){
+  //the content of the info window*/
+
+  console.log("length of nearby places " + vm.nearbyPlaces().length);
+  contentString = '<div class="box"><span class="title">' + vm.businessName() + '</span><img class="rating" src=' + vm.businessRating() + '><div class="line"></div><img class="biz-pic" src=' + vm.businessPic() + '><div class="biz-info"><span>' + vm.businessPhone() + '</span><span>' + vm.businessAddress() + '</span><span>' + vm.businessType() + '</span><ul class="nearby-places" data-bind="foreach: nearbyPlaces"><li class="other-biz" data-bind="text: name"></li></ul></div></div>';
+
+  infoWindow.setContent(contentString);
+}
+
 // hide the business information panel
 function clearYelp(){
-	window.vm.businessShow(false);
+	vm.businessShow(false);
 }
