@@ -265,12 +265,10 @@ function AppViewModel() {
       clearYelp();
       $(".highlighted").removeClass("highlighted");
 
-      //TODO: add info window
-      infoWindow.open(map, marker);
-
       // if marker is bouncing - stop bouncing
       if (marker.getAnimation() != null) {
         marker.setAnimation(null);
+        infoWindow.close();
       }
       // else - stop all markers from bouncing, and marker that is clicked will bounce,
       // list item will be highlighted and show business information
@@ -284,6 +282,8 @@ function AppViewModel() {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         loadYelp(self.resultsArray()[num].phoneNum, num);
         $("#" + num).toggleClass("highlighted");
+        //TODO: add info window
+        infoWindow.open(map, marker);
       }
     });
   }
