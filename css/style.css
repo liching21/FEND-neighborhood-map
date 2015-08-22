@@ -131,11 +131,12 @@ Activity: #F29324; /* orange */
 	display: inline-block;
 	padding: 6px;
 	margin-bottom: -5px;
-	border-radius: 50%;
+	/**border-radius: 50%;*/
+	border-radius: 12px;
 }
 
 .biz-info{
-  	width: 194px;
+  	width: 238px;
   	display: inline-block;
   	font-size: 13px;
   	position: absolute;
@@ -145,5 +146,9 @@ Activity: #F29324; /* orange */
 
 .biz-info span{
 	padding: 2px;
+	display: block;
+}
+
+.other-biz{
 	display: block;
 }

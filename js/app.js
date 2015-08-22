@@ -168,7 +168,7 @@ function AppViewModel() {
   self.resultsArrayLength = ko.observable(self.resultsArray().length);
 
   //create pins LatLng, using that to create and add Marker to the pins array
-  var mappedPins = ko.observableArray();
+  //var mappedPins = ko.observableArray();
   var pinPoint, pinMarker;
   for ( var i = 0; i < pins.length; i++){
 
@@ -183,12 +183,13 @@ function AppViewModel() {
   }
 
   var map;
+  initialize();
+
   var InfoWindow;
   var contentString;
 
   // Initialising the map
   function initialize() {
-
     //Setting the map
     map = new google.maps.Map(document.getElementById('map-canvas'), {
 
@@ -245,11 +246,6 @@ function AppViewModel() {
       }]
     });
 
-    //adding each marker to the map
-    for (var i = 0; i < self.resultsArrayLength(); i++){
-      self.resultsArray()[i].markerPoint.setMap(map);
-    }
-
     //creating an info window
     infoWindow = new google.maps.InfoWindow({
       content: contentString
@@ -259,9 +255,12 @@ function AppViewModel() {
   // Showing the businesss information
   function showBizInfo(marker, num) {
 
+    //var currentMarker;
+
     google.maps.event.addListener(marker, 'click', function() {
 
       // clear previous display (if there is any)
+      currentMarker = this;
       clearYelp();
       $(".highlighted").removeClass("highlighted");
 
@@ -275,25 +274,31 @@ function AppViewModel() {
       else {
         var thisMarker;
 
-        for (var i = 0; i < self.resultsArrayLength(); i++){
+        var resultsArrayLength = self.resultsArray().length;
+        for (var i = 0; i < resultsArrayLength; i++){
           thisMarker = self.resultsArray()[i].markerPoint;
           thisMarker.setAnimation(null);
         }
         marker.setAnimation(google.maps.Animation.BOUNCE);
         loadYelp(self.resultsArray()[num].phoneNum, num);
         $("#" + num).toggleClass("highlighted");
-        //TODO: add info window
-        infoWindow.open(map, marker);
+        infoWindow.open(map, marker);   //open the infoWindow
       }
+    });
+
+    google.maps.event.addListener(infoWindow,'closeclick',function(){
+      new google.maps.event.trigger(currentMarker, 'click' );
     });
   }
 
   // updating the resultArray, based on the query
   self.result = ko.pureComputed(function() {
+
     var a = this.query().toLowerCase();
 
     // deleting exisiting markers, and remove event listeners
-    for (var i = 0; i < self.resultsArrayLength(); i++) {
+    var resultsArrayLength = self.resultsArray().length;
+    for (var i = 0; i < resultsArrayLength; i++) {
       google.maps.event.clearListeners(self.resultsArray()[i].markerPoint, 'click');
       self.resultsArray()[i].markerPoint.setMap(null);
     }
@@ -308,8 +313,8 @@ function AppViewModel() {
       }
     }
 
-    //re-adding Markers to the map
-    for (var i = 0; i < self.resultsArrayLength(); i++){
+    var resultsArrayLength = self.resultsArray().length;
+    for (var i = 0; i < resultsArrayLength; i++){
       self.resultsArray()[i].markerPoint.setMap(map);
       showBizInfo(self.resultsArray()[i].markerPoint, i);
     }
@@ -336,7 +341,6 @@ function AppViewModel() {
         }
       }
   };
-  google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 // Activates knockout.js

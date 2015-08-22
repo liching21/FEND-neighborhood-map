@@ -16,10 +16,6 @@ function loadYelp(phoneNum, num){
      dataType: 'jsonp',
      success:function(json){
 
-      //Update the ko observable based on the information received
-      //console.log(json);
-      //infoWindow.setContent("<h1>" + this.Business[1].name + "</h1>");
-
       var thisBusiness = json.businesses[0];
 
     	vm.businessShow(true);
@@ -31,9 +27,7 @@ function loadYelp(phoneNum, num){
       vm.businessType("Type: " + vm.resultsArray()[num].type);
 
       //the content of the info window*/
-      contentString = '<div class="box"><span class="title">' + vm.businessName() + '</span><img class="rating" src=' + vm.businessRating() + '><div class="line"></div><img class="biz-pic" src=' + vm.businessPic() + '><div class="biz-info"><span>' + vm.businessPhone() + '</span><span>' + vm.businessAddress() + '</span><span>' + vm.businessType() + '</span></div></div>';
-
-      infoWindow.setContent(contentString);
+      contentString = '<div class="box"><span class="title">' + vm.businessName() + '</span><img class="rating" src=' + vm.businessRating() + '><div class="line"></div><img class="biz-pic" src=' + vm.businessPic() + '><div class="biz-info"><span>' + vm.businessPhone() + '</span><span>' + vm.businessAddress() + '</span><span>' + vm.businessType() + '</span>';
      },
      error:function(){
          alert("Error, ajax request failed");
@@ -43,6 +37,7 @@ function loadYelp(phoneNum, num){
 }
 
 // AJAX request to FourSquare to access further business information
+
 function loadFourSquare(num){
 
   var clientId = "YSJ15TUOHFH3DACTYK4DQIZSYXNNNO3QHJGEOMQCQA3Q5L5B"; // provided by FourSquare
@@ -50,6 +45,7 @@ function loadFourSquare(num){
   var version = "20150816" //the date yyyy/mm/dd
   var url = "https://api.foursquare.com/v2/venues/search?ll=" + window.vm.resultsArray()[num].lat + "," + window.vm.resultsArray()[num].lang + "&client_id=" + clientId + "&client_secret="+ clientSecret+ "&v=" + version;
 
+  var fourSquareString;
   $.ajax({
        url:url,
        dataType: 'jsonp',
@@ -57,17 +53,12 @@ function loadFourSquare(num){
 
         this.Business = json.response.venues;
 
-        //Trying to find out the names of the API's returned
-        /*
         console.log(json);
-        console.log(this.Business[0].name);
-        console.log("name 1 is = " + this.Business[1].name);
-        console.log(this.Business[2].name);
-        console.log(this.Business[4].name);
-        console.log(this.Business[5].name);
-        console.log(this.Business[6].name);
-        console.log(this.Business[7].name);
-        console.log(this.Business[8].name);*/
+
+        fourSquareString = '<div class="line"></div><span class="other-biz">' + this.Business[1].name + '</span><span class="other-biz">' + this.Business[2].name + '</span><span class="other-biz">' + this.Business[3].name + '</span></div></div>';
+        infoWindowContent = contentString.concat(fourSquareString);
+
+        infoWindow.setContent(infoWindowContent);
 
        },
        error:function(){
