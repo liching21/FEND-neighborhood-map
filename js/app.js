@@ -23,6 +23,8 @@ function AppViewModel() {
   self.businessAddress = ko.observable();// a function to join the address
   self.businessShow = ko.observable(false);
 
+  var contentString = " ";
+
   /** creating an array of location pins (points) */
   var pins = [
     {
@@ -186,7 +188,6 @@ function AppViewModel() {
   initialize();
 
   var InfoWindow;
-  var contentString;
 
   // Initialising the map
   function initialize() {

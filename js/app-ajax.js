@@ -28,12 +28,13 @@ function loadYelp(phoneNum, num){
 
       //the content of the info window*/
       contentString = '<div class="box"><span class="title">' + vm.businessName() + '</span><img class="rating" src=' + vm.businessRating() + '><div class="line"></div><img class="biz-pic" src=' + vm.businessPic() + '><div class="biz-info"><span>' + vm.businessPhone() + '</span><span>' + vm.businessAddress() + '</span><span>' + vm.businessType() + '</span>';
+
+      loadFourSquare(num);
      },
      error:function(){
          alert("Error, ajax request failed");
      }
   });
-  loadFourSquare(num);
 }
 
 // AJAX request to FourSquare to access further business information

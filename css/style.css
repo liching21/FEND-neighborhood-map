@@ -96,16 +96,7 @@ Activity: #F29324; /* orange */
 
 .box{
 	width: 350px;
-	/*top: 0px;*/
-	/*position: absolute;*/
-	/*z-index: 1;*/
-	/*right: 0px;*/
-	/*background-color: #fff;*/
-	/*border-radius: 3px;*/
   	margin: 5px;
-  	/*border: 2px solid #066;*/
-	/*box-shadow: 2px 2px 4px #555;*/
-	/*background-color: #f5f5dc;*/
 }
 
 .title{
@@ -131,7 +122,6 @@ Activity: #F29324; /* orange */
 	display: inline-block;
 	padding: 6px;
 	margin-bottom: -5px;
-	/**border-radius: 50%;*/
 	border-radius: 12px;
 }
 
