@@ -26,7 +26,7 @@ body,
 }
 
 input{
-	background-color: #f5f5dc;
+	background-color: #FFF;
 	width: 100%;
 	font-size: 12px;
 	padding: 5px;
@@ -56,7 +56,7 @@ Activity: #F29324; /* orange */
 	margin: 5px;
 	border: 2px solid #066;
 	box-shadow: 2px 2px 4px #555;
-	background-color: #f5f5dc;
+	background-color: #FFF;
 	font-size: 12px;
 }
 
