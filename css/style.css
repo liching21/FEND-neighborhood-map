@@ -27,7 +27,7 @@ body,
 
 input{
 	background-color: #f5f5dc;
-	width: 400px;
+	width: 280px;
 	font-size: 16px;
 	padding: 5px;
 	padding-left: 12px;
@@ -141,4 +141,24 @@ Activity: #F29324; /* orange */
 
 .other-biz{
 	display: block;
+}
+
+.legend-container{
+	z-index: 1;
+    top: 0px;
+    left: 310px;
+    margin: 10px;
+    position: absolute;
+    font-size: 14px;
+}
+
+.legend-img{
+	height: 18px;
+    margin: 0px 2px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.legend{
+	margin-right: 6px;
 }

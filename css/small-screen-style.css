@@ -142,3 +142,23 @@ Activity: #F29324; /* orange */
 	padding: 2px;
 	display: block;
 }
+
+.legend-container{
+	z-index: 1;
+    top: 0px;
+    left: 198px;
+    margin: 10px;
+    position: absolute;
+    font-size: 12px;
+}
+
+.legend-img{
+	height: 10px;
+    margin: 0px 2px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.legend{
+	margin-right: 0px;
+}
