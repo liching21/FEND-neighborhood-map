@@ -2,7 +2,7 @@ FEND Project 5 - The Neighborhood Map
 =====================================
 by Liching Yew
 
-![Screenshot of the Neighborhood map](http://lichingyew.com/FEND-neighborhood-map/img/neighborhood-map-screenshot.png "The screenshot of the Neighborhood Map")
+![Screenshot of the Neighborhood map](http://lichingyew.com/FEND-neighborhood-map/img/screenshot-2.png "The screenshot of the Neighborhood Map")
 
 About this project
 -------------------
@@ -27,6 +27,5 @@ Snazzy Maps styling of the map: https://snazzymaps.com/style/77/clean-cut
 Future Add Ons
 -------------------
 
-- Filter based to the type of businesss
 - Minified code
 - Search bar auto complete

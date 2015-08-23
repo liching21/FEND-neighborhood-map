@@ -1,9 +1,11 @@
 /**
  * Author: Liching Yew
- * Description: JS for Ajax Request
+ * Description: JS for the Ajax Request
+ * Date: 23rd August 2015
  */
 
 var vm = window.vm;
+
 // AJAX request to Yelp using the phone number of the business to retrieve other business information from Yelp
 function loadYelp(phoneNum, num){
 
@@ -37,8 +39,7 @@ function loadYelp(phoneNum, num){
   });
 }
 
-// AJAX request to FourSquare to access further business information
-
+// AJAX request to FourSquare to access the names of nearby businesses
 function loadFourSquare(num){
 
   var clientId = "YSJ15TUOHFH3DACTYK4DQIZSYXNNNO3QHJGEOMQCQA3Q5L5B"; // provided by FourSquare

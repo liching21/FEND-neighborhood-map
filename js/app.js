@@ -1,6 +1,7 @@
 /**
  *	Author: Liching Yew
- * 	Description: app.js
+ * 	Description: the javascript for the application
+ *  Date: 23rd August 2015
  */
 
  /** Code for the ViewModel */
