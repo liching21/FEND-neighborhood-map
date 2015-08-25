@@ -5,37 +5,37 @@
  */
 
 @font-face {
-  font-family: Open Sans;
-  src: url('fonts/OpenSans-Regular.ttf', 'OpenSans-Bold.ttf');
+	font-family: Open Sans;
+	src: url("fonts/OpenSans-Regular.ttf", "OpenSans-Bold.ttf");
 }
 
 html,
 body,
 .mapCanvas {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Open Sans;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Open Sans;
 }
 
 .searchBar {
 	z-index: 1;
 	top: 0px;
 	position: absolute;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	display: inline-block;
 }
 
 input{
-	background-color: #FFF;
+	background-color: #fff;
 	width: 100%;
 	font-size: 12px;
 	padding: 5px;
 	padding-left: 12px;
 	border-radius: 5px;
-	border: 2px solid #066;
 	margin: 5px;
-	box-shadow: 2px 2px 4px #555;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
 }
 
 input:focus{
@@ -55,8 +55,8 @@ Activity: #F29324; /* orange */
 	cursor: pointer;
 	border-radius: 5px;
 	margin: 5px;
-	border: 2px solid #066;
-	box-shadow: 2px 2px 4px #555;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
 	background-color: #FFF;
 	font-size: 12px;
 }
@@ -98,7 +98,7 @@ Activity: #F29324; /* orange */
 
 .box{
 	width: 200px;
-  	margin: 5px;
+  margin: 5px;
 }
 
 .title{
@@ -109,8 +109,8 @@ Activity: #F29324; /* orange */
 
 .rating{
 	display: block;
-  	margin: auto;
-  	padding-bottom: 6px;
+  margin: auto;
+  padding-bottom: 6px;
 }
 
 .line{
@@ -130,13 +130,13 @@ Activity: #F29324; /* orange */
 }
 
 .biz-info{
-  	width: 137px;
-  	display: inline-block;
-  	font-size: 10px;
-  	position: absolute;
-  	text-align: center;
-  	float: right;
-  	padding: 2px;
+  width: 137px;
+ 	display: inline-block;
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  float: right;
+  padding: 2px;
 }
 
 .biz-info span{
@@ -146,18 +146,23 @@ Activity: #F29324; /* orange */
 
 .legend-container{
 	z-index: 1;
-    top: 0px;
-    left: 198px;
-    margin: 10px;
-    position: absolute;
-    font-size: 12px;
+	top: 0px;
+	right: 0px;
+	margin: 5px;
+	position: absolute;
+	font-size: 14px;
+	padding: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
 }
 
 .legend-img{
 	height: 10px;
-    margin: 0px 2px;
-    border: 1px solid black;
-    border-radius: 3px;
+	margin: 0px 2px;
+	border: 1px solid black;
+	border-radius: 3px;
 }
 
 .legend{

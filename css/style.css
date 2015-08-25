@@ -5,29 +5,29 @@
  */
 
 @font-face {
-  font-family: Open Sans;
-  src: url('fonts/OpenSans-Regular.ttf', 'OpenSans-Bold.ttf');
+	font-family: Open Sans;
+	src: url("fonts/OpenSans-Regular.ttf", "OpenSans-Bold.ttf");
 }
 
 html,
 body,
 .mapCanvas {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Open Sans;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Open Sans;
 }
 
 .searchBar{
 	z-index: 1;
 	top: 0px;
 	position: absolute;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	display: inline-block;
 }
 
 input{
-	background-color: #FFF;
+	background-color: #fff;
 	width: 280px;
 	font-size: 16px;
 	padding: 5px;
@@ -35,12 +35,15 @@ input{
 	border-radius: 5px;
 	border: 2px solid #066;
 	margin: 5px;
-	box-shadow: 2px 2px 4px #555;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
+}
 }
 
 input:focus{
 	outline: none;
 }
+
 /**
 Food: #A1E789;  /* green
 Accomodation: #678FEB;*/ /* blue
@@ -55,9 +58,8 @@ Activity: #F29324; /* orange */
 	cursor: pointer;
 	border-radius: 5px;
 	margin: 5px;
-	border: 2px solid #066;
-	box-shadow: 2px 2px 4px #555;
-	background-color: #FFF;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
 }
 
 .list-ul{
@@ -97,7 +99,7 @@ Activity: #F29324; /* orange */
 
 .box{
 	width: 350px;
-  	margin: 5px;
+	margin: 5px;
 }
 
 .title{
@@ -108,8 +110,8 @@ Activity: #F29324; /* orange */
 
 .rating{
 	display: block;
-  	margin: auto;
-  	padding-bottom: 6px;
+	margin: auto;
+	padding-bottom: 6px;
 }
 
 .line{
@@ -127,12 +129,12 @@ Activity: #F29324; /* orange */
 }
 
 .biz-info{
-  	width: 238px;
-  	display: inline-block;
-  	font-size: 13px;
-  	position: absolute;
-  	text-align: center;
-  	margin: auto;
+  width: 238px;
+  display: inline-block;
+  font-size: 13px;
+  position: absolute;
+  text-align: center;
+  margin: auto;
 }
 
 .biz-info span{
@@ -146,20 +148,24 @@ Activity: #F29324; /* orange */
 
 .legend-container{
 	z-index: 1;
-    top: 0px;
-    left: 310px;
-    margin: 10px;
-    position: absolute;
-    font-size: 14px;
+	top: 0px;
+	right: 0px;
+	margin: 5px;
+	position: absolute;
+	font-size: 14px;
+	padding: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #066;
+	box-shadow: 1px 1px 2px #555;
 }
 
 .legend-img{
 	height: 18px;
-    margin: 0px 2px;
-    border: 1px solid black;
-    border-radius: 3px;
+	border: 1px solid black;
+	border-radius: 3px;
 }
 
 .legend{
-	margin-right: 6px;
+	margin: 0px 6px;
 }

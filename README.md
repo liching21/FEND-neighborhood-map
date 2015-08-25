@@ -2,14 +2,14 @@ FEND Project 5 - The Neighborhood Map
 =====================================
 by Liching Yew
 
-![Screenshot of the Neighborhood map](http://lichingyew.com/FEND-neighborhood-map/img/screenshot-2.png "The screenshot of the Neighborhood Map")
+![Screenshot of the Neighborhood map](http://lichingyew.com/FEND-neighborhood-map/img/screenshot-3.png "The screenshot of the Neighborhood Map")
 
 About this project
 -------------------
 
 This project is a single page application featuring a map of The Rocks, Sydney with added functionality including highlighted businesses, third-party data about those businesses and a search functionality.
 
-It is developed with the knockout.js framework and implemented with both the Google Maps Yelp API.
+It is developed with the knockout.js framework and implemented with both the Google Maps, Yelp and Foursquare API.
 
 To view this project, please visit the link below:
 

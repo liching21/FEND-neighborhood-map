@@ -1,50 +1,37 @@
 <!-- Author: Liching Yew -->
 <!-- Description: Project 5 the Neighborhood map Udacity's FEND -->
 <!-- Date: 23rd August 2015 -->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-  <title>Neighborhood Map</title>
-  <link rel="stylesheet" media="only screen and (max-width: 800px)" href="css/small-screen-style.css">
-  <link rel="stylesheet" media="only screen and (min-width: 801px)" href="css/style.css">
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-  <script src="js/knockout-3.3.0.js"></script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/app.js" defer="defer"></script>
-</head>
-<body>
-  <div id="map-canvas" class="mapCanvas"></div>
-  <!-- The Search bar -->
-	<div class="searchBar">
-    <input placeholder="Search… The Rocks, Sydney" type="text" data-bind="textInput: query, text: result()">
-  </div>
-  <div class="legend-container">
-    <img class="legend-img" src="img/green.jpg"><span class="legend">Food</span>
-    <img class="legend-img" src="img/blue.jpg"><span class="legend">Accomodation</span>
-    <img class="legend-img" src="img/orange.jpg"> <span class="legend">Activity</span>
-  </div>
-
-  <!-- Add a list of markers -->
-  <div class="marker-list">
-		<ul class="list-ul" data-bind="foreach: resultsArray">
-			<li class="list-option" data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
-		</ul>
-	</div>
-
-  <!-- Add a panel to display the business information
-  <div class="box" data-bind="visible: businessShow">
-  	<span class="title" data-bind="text: businessName"></span>
-  	<img class="rating" data-bind="attr:{src: businessRating}">
-  	<div class="line"></div>
-
-  	<img class="biz-pic" data-bind="attr:{src: businessPic}"><div class="biz-info">
-  		<span data-bind="text: businessPhone"></span>
-  		<span data-bind="text: businessAddress"></span>
-      <span data-bind="text: businessType"></span>
-  	</div></div>-->
-  <script src="js/app-ajax.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Neighborhood Map</title>
+    <link rel="stylesheet" media="only screen and (max-width: 800px)" href="css/small-screen-style.css">
+    <link rel="stylesheet" media="only screen and (min-width: 801px)" href="css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="js/knockout-3.3.0.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/app.js" defer="defer"></script>
+  </head>
+  <body>
+    <div id="map-canvas" class="mapCanvas"></div>
+    <!-- the search bar -->
+    <div class="searchBar">
+      <input placeholder="Search… The Rocks, Sydney" type="text" data-bind="textInput: query, text: result()">
+    </div>
+    <!-- the legend for colour of the marker -->
+    <div class="legend-container">
+      <div><img class="legend-img" src="img/blue.jpg"><span class="legend">Accomodation</span></div>
+      <div><img class="legend-img" src="img/green.jpg"><span class="legend">Food</span></div>
+      <div><img class="legend-img" src="img/orange.jpg"><span class="legend">Activity</span></div>
+    </div>
+    <!-- Add a list of markers -->
+    <div class="marker-list">
+      <ul class="list-ul" data-bind="foreach: resultsArray">
+        <li class="list-option" data-bind="text: name, attr: {id: $index },click: $root.clickedFunction" ></li>
+      </ul>
+    </div>
+    <script src="js/app-ajax.js"></script>
+  </body>
 </html>
